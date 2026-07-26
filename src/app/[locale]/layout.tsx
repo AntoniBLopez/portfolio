@@ -44,6 +44,11 @@ export async function generateMetadata({
     applicationName: profile.name,
     authors: [{ name: profile.name, url: siteUrl }],
     creator: profile.name,
+    icons: {
+      icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+      shortcut: "/icon.svg",
+      apple: "/icon.svg",
+    },
     alternates: alternatesFor(locale),
     robots: {
       index: true,
