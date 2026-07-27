@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
@@ -122,13 +123,28 @@ export default async function ProjectPage({
             </div>
 
             <div className="relative overflow-hidden rounded-2xl bg-panel ring-1 ring-line">
-              <div className={cn("absolute inset-0 bg-gradient-to-br", project.accent)} />
-              <div className="grid-backdrop absolute inset-0 opacity-50" />
-              <div className="relative grid aspect-4/3 place-items-center">
-                <span className="grid size-20 place-items-center rounded-3xl bg-canvas/60 text-brand ring-1 ring-line backdrop-blur-md animate-float">
-                  <Icon name={project.icon} className="size-9" />
-                </span>
-              </div>
+              {project.image ? (
+                <div className="relative aspect-4/3">
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    priority
+                  />
+                </div>
+              ) : (
+                <>
+                  <div className={cn("absolute inset-0 bg-gradient-to-br", project.accent)} />
+                  <div className="grid-backdrop absolute inset-0 opacity-50" />
+                  <div className="relative grid aspect-4/3 place-items-center">
+                    <span className="grid size-20 place-items-center rounded-3xl bg-canvas/60 text-brand ring-1 ring-line backdrop-blur-md animate-float">
+                      <Icon name={project.icon} className="size-9" />
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 

@@ -396,6 +396,7 @@ export const experience: ExperienceEntry[] = [
 /* your real numbers, and add liveUrl / repoUrl where the project is public.   */
 
 export const projectCategories = [
+  { id: "realtime", label: { en: "Realtime", es: "Tiempo real" } },
   { id: "education", label: { en: "Learning", es: "Aprendizaje" } },
   { id: "offline", label: { en: "Offline-first", es: "Offline-first" } },
   { id: "platform", label: { en: "Platforms", es: "Plataformas" } },
@@ -423,11 +424,77 @@ export type Project = {
   features: { title: Localized; body: Localized }[];
   metrics: { value: string; label: Localized }[];
   stack: string[];
+  /** Cover image under /public, shown on cards and case study hero. */
+  image?: string;
   liveUrl?: string;
   repoUrl?: string;
 };
 
 export const projects: Project[] = [
+  {
+    slug: "bingo-live",
+    name: "Bingo Live",
+    category: "realtime",
+    icon: "grid",
+    accent: "from-brand-500/30 via-accent-500/15 to-transparent",
+    year: "2026",
+    featured: true,
+    tagline: {
+      en: "A multiplayer bingo game where cards, calls and winners sync live over WebSockets.",
+      es: "Un bingo multijugador donde cartones, cantadas y ganadores se sincronizan en vivo con WebSockets.",
+    },
+    role: { en: "Sole developer", es: "Desarrollador único" },
+    timeline: { en: "Personal project", es: "Proyecto personal" },
+    challenge: {
+      en: "Bingo only works when every player sees the same ball at the same moment. A refresh-based UI lags, desyncs cards and ruins the room the second someone joins late or drops offline mid-round.",
+      es: "El bingo solo funciona si todos ven la misma bola en el mismo instante. Una UI a base de refrescos se desfasa, desincroniza cartones y rompe la sala en cuanto alguien entra tarde o se cae a mitad de ronda.",
+    },
+    approach: {
+      en: "I built a lobby-to-game flow on a realtime WebSocket channel: players join a room, the host starts the round, and every call is broadcast so cards mark themselves and win conditions are checked on the server. Late joiners catch up from room state instead of guessing what they missed.",
+      es: "Monté el flujo de lobby a partida sobre un canal WebSocket en tiempo real: los jugadores entran a una sala, el anfitrión arranca la ronda y cada cantada se emite para que los cartones se marquen solos y las condiciones de victoria se validen en el servidor. Quien entra tarde recupera el estado de la sala en lugar de adivinar lo que se perdió.",
+    },
+    outcome: {
+      en: "A playable live bingo room you can open on any device: share the link, fill the lobby and run a round without page refreshes or manual sync.",
+      es: "Una sala de bingo en vivo jugable desde cualquier dispositivo: compartes el enlace, llenas el lobby y tiras una ronda sin refrescar ni sincronizar a mano.",
+    },
+    features: [
+      {
+        title: { en: "Realtime lobby", es: "Lobby en tiempo real" },
+        body: {
+          en: "Players appear in the room as they join, ready for the host to start the game.",
+          es: "Los jugadores aparecen en la sala al unirse, listos para que el anfitrión arranque la partida.",
+        },
+      },
+      {
+        title: { en: "Live ball calls", es: "Cantadas en vivo" },
+        body: {
+          en: "Each number is pushed over WebSockets so every connected card updates together.",
+          es: "Cada número se emite por WebSockets para que todos los cartones conectados se actualicen a la vez.",
+        },
+      },
+      {
+        title: { en: "Shared game state", es: "Estado de partida compartido" },
+        body: {
+          en: "Room state stays authoritative on the server so reconnects and late joins stay consistent.",
+          es: "El estado de la sala queda en el servidor para que reconexiones y entradas tardías sigan siendo coherentes.",
+        },
+      },
+      {
+        title: { en: "Multi-device play", es: "Juego multi-dispositivo" },
+        body: {
+          en: "Open the link on phones or laptops in the same room — no install, no refresh loop.",
+          es: "Abre el enlace en móviles u ordenadores en la misma sala: sin instalar ni bucles de refresco.",
+        },
+      },
+    ],
+    metrics: [
+      { value: "Live", label: { en: "WebSocket sync", es: "Sincronización WebSocket" } },
+      { value: "Multi", label: { en: "Players per room", es: "Jugadores por sala" } },
+      { value: "0", label: { en: "Page refreshes mid-game", es: "Refrescos a mitad de partida" } },
+    ],
+    stack: ["TypeScript", "React", "WebSockets", "Node.js", "Fly.io"],
+    liveUrl: "https://bingogame.fly.dev/",
+  },
   {
     slug: "language-learning-app",
     name: "Lingua Loop",
@@ -553,6 +620,7 @@ export const projects: Project[] = [
       { value: "98", label: { en: "Lighthouse PWA score", es: "Puntuación PWA de Lighthouse" } },
     ],
     stack: ["Next.js", "TypeScript", "Service Workers", "IndexedDB", "Cache API", "Workbox"],
+    liveUrl: "https://salsa-instruments.vercel.app/",
   },
   {
     slug: "dance-academy-platform",
@@ -616,6 +684,8 @@ export const projects: Project[] = [
       { value: "3x", label: { en: "Faster enrolment for students", es: "Inscripción más rápida para alumnos" } },
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL", "Stripe", "Resend", "Tailwind CSS"],
+    image: "/projects/soriano_app.png",
+    liveUrl: "https://soriano-app.vercel.app/",
   },
   {
     slug: "net-worth-tracker",
@@ -679,6 +749,7 @@ export const projects: Project[] = [
       { value: "Local", label: { en: "Data stays private", es: "Los datos siguen privados" } },
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle", "Recharts", "Tailwind CSS"],
+    liveUrl: "https://net-worth-app-antoni-bassols-lopezs-projects.vercel.app/",
   },
   {
     slug: "smart-cv-builder",
@@ -805,6 +876,7 @@ export const projects: Project[] = [
       { value: "Synced", label: { en: "Progress everywhere", es: "Progreso en todos lados" } },
     ],
     stack: ["Next.js", "TypeScript", "PDF.js", "PostgreSQL", "S3", "Tailwind CSS"],
+    liveUrl: "https://my-reading-shelf.vercel.app/",
   },
 ];
 
