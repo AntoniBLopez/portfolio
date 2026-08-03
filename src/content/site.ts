@@ -989,8 +989,8 @@ export const services: Service[] = [
       es: "Webs y aplicaciones web que cargan rápido, posicionan bien y convierten visitas en clientes.",
     },
     summary: {
-      en: "I design and build the site your business deserves: fast, accessible, easy to edit and built on a stack you will not need to throw away in a year. Fixed scope, fixed price, and a date you can plan around.",
-      es: "Diseño y construyo la web que tu negocio merece: rápida, accesible, fácil de editar y sobre un stack que no tendrás que tirar en un año. Alcance fijo, precio fijo y una fecha con la que puedes planificar.",
+      en: "I design and build the site your business deserves: fast, accessible, easy to edit and built on a stack you will not need to throw away in a year. Fixed price and fast delivery.",
+      es: "Diseño y construyo la web que tu negocio merece: rápida, accesible, fácil de editar y sobre un stack que no tendrás que tirar en un año. Precio fijo y entrega rápida.",
     },
     teaser: {
       en: "From a single high-converting landing page to a full custom web application. Available directly or through my Fiverr profile.",
