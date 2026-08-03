@@ -90,6 +90,12 @@
     "processTitle": "De la primera llamada al lanzamiento",
     "faqTitle": "Preguntas antes de empezar"
   },
+  "WebLanding": {
+    "yearsLabel": "años",
+    "headline": "Webs y aplicaciones que cargan rápido, posicionan bien y convierten visitas en clientes.",
+    "summary": "Desarrollador full-stack con más de 4 años de experiencia lanzando webs y aplicaciones en producción. Alcance fijo, precio fijo y una fecha de lanzamiento con la que puedes planificar — disponible directamente o por Fiverr.",
+    "primaryCta": "Ver paquetes"
+  },
   "AiAutomation": {
     "roiEyebrow": "El caso de negocio",
     "roiTitle": "De dónde sale el ahorro",
@@ -170,6 +176,8 @@
     "projectsDescription": "Casos prácticos de productos full-stack que he diseñado, construido y lanzado: plataformas de aprendizaje, apps offline-first y gestores financieros.",
     "webTitle": "Servicios de Desarrollo Web",
     "webDescription": "Webs y aplicaciones web rápidas, accesibles y orientadas a conversión, construidas por un desarrollador full-stack senior. Alcance fijo, precio fijo, entrega a tiempo.",
+    "webLandingTitle": "Desarrollo Web — Antoni B. López",
+    "webLandingDescription": "Desarrollador full-stack con más de 4 años de experiencia. Landing pages, webs multipágina y aplicaciones a medida — alcance fijo, precio fijo, entrega a tiempo.",
     "aiTitle": "Automatización de Negocio con IA",
     "aiDescription": "Audito tu operación, encuentro el trabajo manual que consume tu margen y despliego automatización con IA que devuelve hasta 100.000 EUR al año.",
     "notFoundTitle": "Página no encontrada"

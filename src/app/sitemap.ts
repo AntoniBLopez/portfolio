@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
+import { paths } from "@/config/paths";
 import { projects, services } from "@/content/site";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -10,8 +11,9 @@ type Entry = {
 };
 
 const entries: Entry[] = [
-  { path: "", priority: 1, changeFrequency: "monthly" },
-  { path: "/projects", priority: 0.8, changeFrequency: "monthly" },
+  { path: paths.home, priority: 1, changeFrequency: "monthly" },
+  { path: paths.projects, priority: 0.8, changeFrequency: "monthly" },
+  { path: paths.webLanding, priority: 0.95, changeFrequency: "monthly" },
   ...services.map((service) => ({
     path: `/services/${service.slug}`,
     priority: 0.9,

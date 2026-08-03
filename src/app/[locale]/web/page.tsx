@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { ServiceHero } from "@/components/service/service-hero";
+import { WebLandingHero } from "@/components/service/web-landing-hero";
 import { WebDevelopmentContent } from "@/components/service/web-development-content";
 import { JsonLd, breadcrumbSchema } from "@/components/json-ld";
 import { paths } from "@/config/paths";
-import { getService, profile } from "@/content/site";
 import { buildMetadata } from "@/lib/seo";
 
-const PATH = paths.webDevelopment;
+const PATH = paths.webLanding;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -25,12 +24,12 @@ export async function generateMetadata({
   return buildMetadata({
     locale,
     path: PATH,
-    title: t("webTitle"),
-    description: t("webDescription"),
+    title: t("webLandingTitle"),
+    description: t("webLandingDescription"),
   });
 }
 
-export default async function WebDevelopmentPage({
+export default async function WebLandingPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -38,24 +37,15 @@ export default async function WebDevelopmentPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const service = getService("web-development");
-  const tc = await getTranslations({ locale, namespace: "Common" });
   const tn = await getTranslations({ locale, namespace: "Nav" });
 
   return (
     <>
-      <ServiceHero
-        service={service}
-        locale={locale}
-        primaryCta={{ label: tc("orderOnFiverr"), href: profile.fiverrUrl, external: true }}
-        secondaryCta={{ label: tc("workWithMeDirectly"), href: "#contact" }}
-      />
-
+      <WebLandingHero locale={locale} />
       <WebDevelopmentContent locale={locale} />
 
       <JsonLd
         data={breadcrumbSchema(locale, [
-          { name: tn("services"), path: "/#services" },
           { name: tn("services_web"), path: PATH },
         ])}
       />

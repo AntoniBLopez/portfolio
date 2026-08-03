@@ -90,6 +90,12 @@
     "processTitle": "From first call to launch",
     "faqTitle": "Questions before we start"
   },
+  "WebLanding": {
+    "yearsLabel": "years",
+    "headline": "Websites and web apps that load fast, rank well and turn visitors into customers.",
+    "summary": "Full-stack developer with over 4 years of experience shipping production websites and web applications. Fixed scope, fixed price, and a launch date you can plan around — available directly or through Fiverr.",
+    "primaryCta": "See packages"
+  },
   "AiAutomation": {
     "roiEyebrow": "The business case",
     "roiTitle": "Where the savings come from",
@@ -170,6 +176,8 @@
     "projectsDescription": "Case studies from full-stack products I have designed, built and shipped, from learning platforms to offline-first apps and financial trackers.",
     "webTitle": "Web Development Services",
     "webDescription": "Fast, accessible, conversion-focused websites and web applications built by a senior full-stack developer. Fixed scope, fixed price, shipped on time.",
+    "webLandingTitle": "Web Development — Antoni B. López",
+    "webLandingDescription": "Full-stack developer with 4+ years of experience. Landing pages, multi-page sites and custom web apps — fixed scope, fixed price, shipped on time.",
     "aiTitle": "AI Business Automation",
     "aiDescription": "I audit your operation, find the manual work draining your margin, and deploy AI automation that returns up to 100.000 EUR a year.",
     "notFoundTitle": "Page not found"
