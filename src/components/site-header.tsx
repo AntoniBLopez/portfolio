@@ -46,13 +46,6 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key !== "Escape") return;
       setMenuOpen(false);
@@ -129,155 +122,168 @@ export function SiteHeader() {
   }
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "panel-glass border-b border-line py-2" : "border-b border-transparent py-4",
-      )}
-    >
-      <Container size="wide">
-        <div className="flex items-center justify-between gap-4">
-          <Link
-            href="/"
-            className="group flex items-center gap-2.5"
-            aria-label={profile.name}
-            onClick={(event) => {
-              if (!isHome) return;
-              event.preventDefault();
-              window.scrollTo({ top: 0 });
-              setMenuOpen(false);
-            }}
-          >
-            <ProfileLogo
-              priority
-              className="transition-transform group-hover:scale-105"
-            />
-            <span className="hidden text-sm font-semibold tracking-tight text-ink sm:block">
-              {profile.name}
-            </span>
-          </Link>
-
-          <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
-            {navItems.slice(0, 3).map((item) => (
-              <span key={item.id}>{renderSectionLink(item.id, t(item.labelKey))}</span>
-            ))}
-
-            <div ref={servicesRef} className="relative">
-              <button
-                type="button"
-                onClick={() => setServicesOpen((open) => !open)}
-                aria-expanded={servicesOpen}
-                aria-haspopup="true"
-                className={cn(
-                  "flex cursor-pointer items-center gap-1 text-sm font-medium transition-colors",
-                  servicesOpen || activeSection === "services"
-                    ? "text-ink"
-                    : "text-ink-2 hover:text-ink",
-                )}
-              >
-                {t("services")}
-                <Icon
-                  name="chevron-down"
-                  className={cn(
-                    "size-3.5 transition-transform",
-                    servicesOpen && "rotate-180",
-                  )}
-                />
-              </button>
-
-              {servicesOpen && (
-                <div className="absolute top-full left-1/2 z-50 mt-4 w-64 -translate-x-1/2 overflow-hidden rounded-2xl bg-panel p-1.5 ring-1 ring-line shadow-2xl shadow-black/25">
-                  {serviceLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-panel-hi"
-                      onClick={() => setServicesOpen(false)}
-                    >
-                      <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-lg bg-brand-500/12 text-brand">
-                        <Icon name={link.icon} className="size-4" />
-                      </span>
-                      <span className="text-sm font-medium text-ink">{link.label}</span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {renderSectionLink("contact", t("contact"))}
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <LocaleSwitcher className="hidden sm:inline-flex" />
-            <ThemeToggle className="hidden sm:inline-flex" />
-            <a
-              href={profile.calendarUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={buttonStyles({ size: "sm", className: "hidden lg:inline-flex" })}
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div
+        className={cn(
+          "relative z-50 transition-all duration-300",
+          scrolled || menuOpen
+            ? "panel-glass border-b border-line py-2"
+            : "border-b border-transparent py-4",
+        )}
+      >
+        <Container size="wide">
+          <div className="flex items-center justify-between gap-4">
+            <Link
+              href="/"
+              className="group flex items-center gap-2.5"
+              aria-label={profile.name}
+              onClick={(event) => {
+                if (!isHome) return;
+                event.preventDefault();
+                window.scrollTo({ top: 0 });
+                setMenuOpen(false);
+              }}
             >
-              {tc("bookCall")}
-              <Icon name="arrow-up-right" className="size-4" />
-            </a>
-            <button
-              type="button"
-              onClick={() => setMenuOpen((open) => !open)}
-              aria-expanded={menuOpen}
-              aria-label={menuOpen ? tc("closeMenu") : tc("openMenu")}
-              className="inline-flex size-10 items-center justify-center rounded-full text-ink ring-1 ring-line lg:hidden"
-            >
-              <Icon name={menuOpen ? "x" : "menu"} className="size-5" />
-            </button>
-          </div>
-        </div>
-      </Container>
+              <ProfileLogo
+                priority
+                className="transition-transform group-hover:scale-105"
+              />
+              <span className="hidden text-sm font-semibold tracking-tight text-ink sm:block">
+                {profile.name}
+              </span>
+            </Link>
 
-      {menuOpen && (
-        <div className="fixed inset-0 z-40 overflow-y-auto bg-canvas/98 backdrop-blur-xl lg:hidden">
-          <Container size="wide" className="flex flex-col gap-8 pt-28 pb-10">
-            <nav aria-label="Mobile" className="flex flex-col gap-5">
-              {navItems.map((item) => (
-                <span key={item.id} className="text-lg">
-                  {renderSectionLink(item.id, t(item.labelKey), "text-lg")}
-                </span>
+            <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
+              {navItems.slice(0, 3).map((item) => (
+                <span key={item.id}>{renderSectionLink(item.id, t(item.labelKey))}</span>
               ))}
+
+              <div ref={servicesRef} className="relative">
+                <button
+                  type="button"
+                  onClick={() => setServicesOpen((open) => !open)}
+                  aria-expanded={servicesOpen}
+                  aria-haspopup="true"
+                  className={cn(
+                    "flex cursor-pointer items-center gap-1 text-sm font-medium transition-colors",
+                    servicesOpen || activeSection === "services"
+                      ? "text-ink"
+                      : "text-ink-2 hover:text-ink",
+                  )}
+                >
+                  {t("services")}
+                  <Icon
+                    name="chevron-down"
+                    className={cn(
+                      "size-3.5 transition-transform",
+                      servicesOpen && "rotate-180",
+                    )}
+                  />
+                </button>
+
+                {servicesOpen && (
+                  <div className="absolute top-full left-1/2 z-50 mt-4 w-64 -translate-x-1/2 overflow-hidden rounded-2xl bg-panel p-1.5 ring-1 ring-line shadow-2xl shadow-black/25">
+                    {serviceLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-panel-hi"
+                        onClick={() => setServicesOpen(false)}
+                      >
+                        <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-lg bg-brand-500/12 text-brand">
+                          <Icon name={link.icon} className="size-4" />
+                        </span>
+                        <span className="text-sm font-medium text-ink">{link.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {renderSectionLink("contact", t("contact"))}
             </nav>
 
-            <div className="flex flex-col gap-3 border-t border-line pt-6">
-              <span className="text-xs font-semibold tracking-[0.18em] text-ink-3 uppercase">
-                {t("servicesMenuLabel")}
-              </span>
-              {serviceLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="flex items-center gap-3 rounded-xl bg-panel p-3 ring-1 ring-line"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <span className="grid size-9 place-items-center rounded-lg bg-brand-500/12 text-brand">
-                    <Icon name={link.icon} className="size-4.5" />
+            <div className="flex items-center gap-2">
+              <LocaleSwitcher className="hidden sm:inline-flex" />
+              <ThemeToggle className="hidden sm:inline-flex" />
+              <a
+                href={profile.calendarUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={buttonStyles({ size: "sm", className: "hidden lg:inline-flex" })}
+              >
+                {tc("bookCall")}
+                <Icon name="arrow-up-right" className="size-4" />
+              </a>
+              <button
+                type="button"
+                onClick={() => setMenuOpen((open) => !open)}
+                aria-expanded={menuOpen}
+                aria-label={menuOpen ? tc("closeMenu") : tc("openMenu")}
+                className="inline-flex size-10 cursor-pointer items-center justify-center rounded-full text-ink ring-1 ring-line lg:hidden"
+              >
+                <Icon name={menuOpen ? "x" : "menu"} className="size-5" />
+              </button>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {menuOpen && (
+        <div className="lg:hidden">
+          <button
+            type="button"
+            aria-label={tc("closeMenu")}
+            className="fixed inset-0 z-40 cursor-pointer bg-canvas/50 backdrop-blur-sm"
+            onClick={() => setMenuOpen(false)}
+          />
+          <div className="relative z-50 border-b border-line bg-canvas/98 shadow-2xl shadow-black/20 backdrop-blur-xl">
+            <Container size="wide" className="flex flex-col gap-6 py-6">
+              <nav aria-label="Mobile" className="flex flex-col gap-4">
+                {navItems.map((item) => (
+                  <span key={item.id} className="text-base">
+                    {renderSectionLink(item.id, t(item.labelKey), "text-base")}
                   </span>
-                  <span className="text-sm font-medium text-ink">{link.label}</span>
-                  <Icon name="arrow-up-right" className="ml-auto size-4 text-ink-3" />
-                </Link>
-              ))}
-            </div>
+                ))}
+              </nav>
 
-            <div className="flex items-center justify-between border-t border-line pt-6">
-              <LocaleSwitcher />
-              <ThemeToggle />
-            </div>
+              <div className="flex flex-col gap-3 border-t border-line pt-5">
+                <span className="text-xs font-semibold tracking-[0.18em] text-ink-3 uppercase">
+                  {t("servicesMenuLabel")}
+                </span>
+                {serviceLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="flex items-center gap-3 rounded-xl bg-panel p-3 ring-1 ring-line"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <span className="grid size-9 place-items-center rounded-lg bg-brand-500/12 text-brand">
+                      <Icon name={link.icon} className="size-4.5" />
+                    </span>
+                    <span className="text-sm font-medium text-ink">{link.label}</span>
+                    <Icon name="arrow-up-right" className="ml-auto size-4 text-ink-3" />
+                  </Link>
+                ))}
+              </div>
 
-            <a
-              href={profile.calendarUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={buttonStyles({ size: "lg", className: "w-full" })}
-            >
-              {tc("bookCall")}
-              <Icon name="arrow-up-right" className="size-4" />
-            </a>
-          </Container>
+              <div className="flex items-center justify-between border-t border-line pt-5">
+                <LocaleSwitcher />
+                <ThemeToggle />
+              </div>
+
+              <a
+                href={profile.calendarUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={buttonStyles({ size: "lg", className: "w-full" })}
+                onClick={() => setMenuOpen(false)}
+              >
+                {tc("bookCall")}
+                <Icon name="arrow-up-right" className="size-4" />
+              </a>
+            </Container>
+          </div>
         </div>
       )}
     </header>

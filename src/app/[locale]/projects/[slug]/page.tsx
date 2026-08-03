@@ -228,9 +228,9 @@ export default async function ProjectPage({
         <Section containerSize="wide" className="border-t border-line pb-0">
           <Link
             href={`/projects/${nextProject.slug}`}
-            className="group flex flex-col gap-3 rounded-2xl bg-panel p-8 ring-1 ring-line transition-all hover:-translate-y-1 hover:ring-line-hi sm:flex-row sm:items-center sm:justify-between sm:p-10"
+            className="group flex flex-col gap-5 rounded-2xl bg-panel p-6 ring-1 ring-line transition-all hover:-translate-y-1 hover:ring-line-hi sm:flex-row sm:items-center sm:gap-8 sm:p-8"
           >
-            <div className="flex flex-col gap-1.5">
+            <div className="flex min-w-0 flex-1 flex-col gap-1.5">
               <span className="text-xs font-semibold tracking-[0.18em] text-ink-3 uppercase">
                 {t("nextProject")}
               </span>
@@ -238,7 +238,29 @@ export default async function ProjectPage({
                 {nextProject.name}
               </span>
             </div>
-            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-brand-500/12 text-brand transition-transform group-hover:translate-x-1">
+
+            <div className="relative aspect-16/10 w-full shrink-0 overflow-hidden rounded-xl ring-1 ring-line sm:aspect-auto sm:h-28 sm:w-48">
+              {nextProject.image ? (
+                <Image
+                  src={nextProject.image}
+                  alt={nextProject.name}
+                  fill
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  sizes="(max-width: 640px) 100vw, 192px"
+                />
+              ) : (
+                <>
+                  <div className={cn("absolute inset-0 bg-gradient-to-br", nextProject.accent)} />
+                  <div className="absolute inset-0 grid place-items-center">
+                    <span className="grid size-12 place-items-center rounded-2xl bg-panel/70 text-brand ring-1 ring-line backdrop-blur-md">
+                      <Icon name={nextProject.icon} className="size-5" />
+                    </span>
+                  </div>
+                </>
+              )}
+            </div>
+
+            <span className="grid size-12 shrink-0 place-items-center self-end rounded-full bg-brand-500/12 text-brand transition-transform group-hover:translate-x-1 sm:self-center">
               <Icon name="arrow-right" className="size-5" />
             </span>
           </Link>

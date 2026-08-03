@@ -564,70 +564,6 @@ export const projects: Project[] = [
     liveUrl: "https://soriano-app.vercel.app/",
   },
   {
-    slug: "language-learning-app",
-    name: "Bocabla",
-    category: "education",
-    icon: "graduation-cap",
-    accent: "from-brand-500/25 via-brand-600/10 to-transparent",
-    year: "2026",
-    featured: true,
-    tagline: {
-      en: "A gamified language learning app with streaks, spaced repetition and bite-sized lessons.",
-      es: "Una app de aprendizaje de idiomas gamificada con rachas, repetición espaciada y lecciones breves.",
-    },
-    role: { en: "Sole developer and product design", es: "Desarrollador único y diseño de producto" },
-    timeline: { en: "5 months", es: "5 meses" },
-    challenge: {
-      en: "Language apps lose people in week two. The lessons get harder, the streak breaks once, and the habit dies. The problem is not content — it is that most apps have no memory of what a specific learner is actually struggling with, so every session feels equally hard.",
-      es: "Las apps de idiomas pierden a la gente en la segunda semana. Las lecciones se complican, la racha se rompe una vez y el hábito muere. El problema no es el contenido: la mayoría de apps no recuerdan con qué está luchando cada alumno concreto, así que todas las sesiones se sienten igual de duras.",
-    },
-    approach: {
-      en: "I built a lesson engine on top of a spaced-repetition scheduler that tracks confidence per individual item, not per lesson. Every answer updates an interval, and the next session is assembled from what is closest to being forgotten. Around that sits the motivation layer: streaks with a forgiveness day, XP, and a progress map that always shows the next small step rather than the distant finish line.",
-      es: "Construí un motor de lecciones sobre un planificador de repetición espaciada que sigue la confianza de cada elemento individual, no de la lección completa. Cada respuesta actualiza un intervalo y la siguiente sesión se ensambla con lo que está más cerca de olvidarse. Alrededor está la capa de motivación: rachas con un día de perdón, XP y un mapa de progreso que siempre muestra el siguiente paso pequeño en lugar de la meta lejana.",
-    },
-    outcome: {
-      en: "Learners return because the app meets them where they are weakest instead of marching through a fixed syllabus. Session completion and week-two retention both moved well above the baselines the project started from.",
-      es: "Los alumnos vuelven porque la app les atiende donde son más débiles en lugar de avanzar por un plan fijo. La finalización de sesiones y la retención en la segunda semana subieron muy por encima de las referencias iniciales del proyecto.",
-    },
-    features: [
-      {
-        title: { en: "Adaptive review scheduling", es: "Repaso adaptativo" },
-        body: {
-          en: "Per-item spaced repetition that rebuilds each session around what you are about to forget.",
-          es: "Repetición espaciada por elemento que reconstruye cada sesión con lo que estás a punto de olvidar.",
-        },
-      },
-      {
-        title: { en: "Streaks that survive real life", es: "Rachas que sobreviven a la vida real" },
-        body: {
-          en: "A forgiveness day and catch-up sessions, because one missed evening should not reset months of work.",
-          es: "Un día de perdón y sesiones de recuperación, porque una noche perdida no debería borrar meses de trabajo.",
-        },
-      },
-      {
-        title: { en: "Audio-first exercises", es: "Ejercicios centrados en audio" },
-        body: {
-          en: "Listening and pronunciation drills with pre-generated audio, cached for instant playback.",
-          es: "Ejercicios de escucha y pronunciación con audio pregenerado y cacheado para reproducción instantánea.",
-        },
-      },
-      {
-        title: { en: "Progress that reads at a glance", es: "Progreso legible de un vistazo" },
-        body: {
-          en: "A skill map showing mastery per topic, so learners can see the shape of what they know.",
-          es: "Un mapa de habilidades con el dominio por tema, para que el alumno vea la forma de lo que sabe.",
-        },
-      },
-    ],
-    metrics: [
-      { value: "+38%", label: { en: "Week-two retention", es: "Retención semana dos" } },
-      { value: "4.2", label: { en: "Sessions per user weekly", es: "Sesiones por usuario a la semana" } },
-      { value: "<1s", label: { en: "Time to first exercise", es: "Tiempo al primer ejercicio" } },
-    ],
-    stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS", "Web Audio API"],
-    image: "/projects/bocabla.png",
-  },
-  {
     slug: "salsa-hits-offline",
     name: "Salsa Hits",
     category: "offline",
@@ -692,12 +628,76 @@ export const projects: Project[] = [
     liveUrl: "https://salsa-instruments.vercel.app/",
   },
   {
+    slug: "language-learning-app",
+    name: "Bocabla",
+    category: "education",
+    icon: "graduation-cap",
+    accent: "from-brand-500/25 via-brand-600/10 to-transparent",
+    year: "2025",
+    featured: true,
+    tagline: {
+      en: "Gamified language-learning web app with ranking, daily streak, badges, a gem shop, real chat-style conversations, plus conjugations, verbs and more.",
+      es: "Web app de aprendizaje de idiomas gamificada con ranking, daily streak, badges, tienda de gemas, aprendizaje con conversaciones reales estilo chat de WhatsApp, aprendizaje de conjugaciones, verbos, etc.",
+    },
+    role: { en: "Sole developer and product design", es: "Desarrollador único y diseño de producto" },
+    timeline: { en: "5 months", es: "5 meses" },
+    challenge: {
+      en: "Language apps lose people in week two. The lessons get harder, the streak breaks once, and the habit dies. The problem is not content — it is that most apps have no memory of what a specific learner is actually struggling with, so every session feels equally hard.",
+      es: "Las apps de idiomas pierden a la gente en la segunda semana. Las lecciones se complican, la racha se rompe una vez y el hábito muere. El problema no es el contenido: la mayoría de apps no recuerdan con qué está luchando cada alumno concreto, así que todas las sesiones se sienten igual de duras.",
+    },
+    approach: {
+      en: "I built a lesson engine on top of a spaced-repetition scheduler that tracks confidence per individual item, not per lesson. Every answer updates an interval, and the next session is assembled from what is closest to being forgotten. Around that sits the motivation layer: streaks with a forgiveness day, XP, and a progress map that always shows the next small step rather than the distant finish line.",
+      es: "Construí un motor de lecciones sobre un planificador de repetición espaciada que sigue la confianza de cada elemento individual, no de la lección completa. Cada respuesta actualiza un intervalo y la siguiente sesión se ensambla con lo que está más cerca de olvidarse. Alrededor está la capa de motivación: rachas con un día de perdón, XP y un mapa de progreso que siempre muestra el siguiente paso pequeño en lugar de la meta lejana.",
+    },
+    outcome: {
+      en: "Learners return because the app meets them where they are weakest instead of marching through a fixed syllabus. Session completion and week-two retention both moved well above the baselines the project started from.",
+      es: "Los alumnos vuelven porque la app les atiende donde son más débiles en lugar de avanzar por un plan fijo. La finalización de sesiones y la retención en la segunda semana subieron muy por encima de las referencias iniciales del proyecto.",
+    },
+    features: [
+      {
+        title: { en: "Adaptive review scheduling", es: "Repaso adaptativo" },
+        body: {
+          en: "Per-item spaced repetition that rebuilds each session around what you are about to forget.",
+          es: "Repetición espaciada por elemento que reconstruye cada sesión con lo que estás a punto de olvidar.",
+        },
+      },
+      {
+        title: { en: "Streaks that survive real life", es: "Rachas que sobreviven a la vida real" },
+        body: {
+          en: "A forgiveness day and catch-up sessions, because one missed evening should not reset months of work.",
+          es: "Un día de perdón y sesiones de recuperación, porque una noche perdida no debería borrar meses de trabajo.",
+        },
+      },
+      {
+        title: { en: "Audio-first exercises", es: "Ejercicios centrados en audio" },
+        body: {
+          en: "Listening and pronunciation drills with pre-generated audio, cached for instant playback.",
+          es: "Ejercicios de escucha y pronunciación con audio pregenerado y cacheado para reproducción instantánea.",
+        },
+      },
+      {
+        title: { en: "Progress that reads at a glance", es: "Progreso legible de un vistazo" },
+        body: {
+          en: "A skill map showing mastery per topic, so learners can see the shape of what they know.",
+          es: "Un mapa de habilidades con el dominio por tema, para que el alumno vea la forma de lo que sabe.",
+        },
+      },
+    ],
+    metrics: [
+      { value: "+38%", label: { en: "Week-two retention", es: "Retención semana dos" } },
+      { value: "4.2", label: { en: "Sessions per user weekly", es: "Sesiones por usuario a la semana" } },
+      { value: "<1s", label: { en: "Time to first exercise", es: "Tiempo al primer ejercicio" } },
+    ],
+    stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS", "Web Audio API"],
+    image: "/projects/bocabla.png",
+  },
+  {
     slug: "net-worth-tracker",
     name: "Net Worth App",
     category: "fintech",
     icon: "wallet",
     accent: "from-emerald-400/20 via-brand-500/10 to-transparent",
-    year: "2024",
+    year: "2025",
     featured: true,
     tagline: {
       en: "A private net worth tracker that turns scattered accounts into one honest number over time.",
@@ -761,11 +761,11 @@ export const projects: Project[] = [
     category: "realtime",
     icon: "grid",
     accent: "from-brand-500/30 via-accent-500/15 to-transparent",
-    year: "2026",
+    year: "2022",
     featured: true,
     tagline: {
-      en: "A multiplayer bingo game where cards, calls and winners sync live over WebSockets.",
-      es: "Un bingo multijugador donde cartones, cantadas y ganadores se sincronizan en vivo con WebSockets.",
+      en: "Open 2 tabs with this app and you will have 2 players (as if a friend were playing from their house and you from yours!). Click start and both tabs update in realtime. Same when you call a ball: if it matches either board, it updates live until one of you gets bingo.",
+      es: "Abre 2 pestañas con esta app y verás que tendrás 2 jugadores (como si tu amigo estuviera jugando desde su casa y tú desde la tuya!) y verás cómo al hacer click en empezar ambas pestañas se actualizan en tiempo real. Lo mismo al lanzar una bola: si coincide con el tablero de alguno de los 2, se actualiza en tiempo real, hasta que uno de los 2 haga bingo.",
     },
     role: { en: "Sole developer", es: "Desarrollador único" },
     timeline: { en: "Personal project", es: "Proyecto personal" },

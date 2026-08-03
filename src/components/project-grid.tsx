@@ -54,7 +54,7 @@ export function ProjectGrid() {
               onClick={() => setFilter(item.id)}
               aria-pressed={isActive}
               className={cn(
-                "rounded-full px-4 py-2 text-sm font-medium transition-all",
+                "cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-all",
                 isActive
                   ? "bg-brand-600 text-white shadow-md shadow-brand-600/25"
                   : "bg-panel text-ink-2 ring-1 ring-line hover:text-ink hover:ring-line-hi",
