@@ -432,72 +432,138 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "bingo-live",
-    name: "Bingo Live",
-    category: "realtime",
-    icon: "grid",
-    accent: "from-brand-500/30 via-accent-500/15 to-transparent",
+    slug: "blau-yoga",
+    name: "Blau Yoga",
+    category: "platform",
+    icon: "palette",
+    accent: "from-sky-400/25 via-brand-500/10 to-transparent",
     year: "2026",
     featured: true,
     tagline: {
-      en: "A multiplayer bingo game where cards, calls and winners sync live over WebSockets.",
-      es: "Un bingo multijugador donde cartones, cantadas y ganadores se sincronizan en vivo con WebSockets.",
+      en: "A custom yoga studio website with five inner pages plus a landing, and an admin panel to edit copy, images and colours without touching code.",
+      es: "Una web a medida para un estudio de yoga con cinco páginas interiores más la landing, y un panel de administración para editar textos, imágenes y colores sin tocar código.",
     },
-    role: { en: "Sole developer", es: "Desarrollador único" },
-    timeline: { en: "Personal project", es: "Proyecto personal" },
+    role: { en: "Full-stack developer, direct client project", es: "Desarrollador full-stack, proyecto directo de cliente" },
+    timeline: { en: "Client project", es: "Proyecto de cliente" },
     challenge: {
-      en: "Bingo only works when every player sees the same ball at the same moment. A refresh-based UI lags, desyncs cards and ruins the room the second someone joins late or drops offline mid-round.",
-      es: "El bingo solo funciona si todos ven la misma bola en el mismo instante. Una UI a base de refrescos se desfasa, desincroniza cartones y rompe la sala en cuanto alguien entra tarde o se cae a mitad de ronda.",
+      en: "The studio needed a fast, fully branded multi-page site — classes, schedule, about, pricing and contact — without the weight and lock-in of WordPress, Wix or similar builders. Content and look had to stay editable by the owner after launch.",
+      es: "El estudio necesitaba una web multipágina rápida y con marca propia — clases, horario, sobre mí, precios y contacto — sin el peso ni el encierro de WordPress, Wix o constructores similares. El contenido y la apariencia tenían que seguir siendo editables por la dueña después del lanzamiento.",
     },
     approach: {
-      en: "I built a lobby-to-game flow on a realtime WebSocket channel: players join a room, the host starts the round, and every call is broadcast so cards mark themselves and win conditions are checked on the server. Late joiners catch up from room state instead of guessing what they missed.",
-      es: "Monté el flujo de lobby a partida sobre un canal WebSocket en tiempo real: los jugadores entran a una sala, el anfitrión arranca la ronda y cada cantada se emite para que los cartones se marquen solos y las condiciones de victoria se validen en el servidor. Quien entra tarde recupera el estado de la sala en lugar de adivinar lo que se perdió.",
+      en: "I built the site in native code end to end: a public marketing surface with a landing page and five inner pages, backed by a lightweight admin where texts, images and colour tokens can be changed without redeploying a theme. No page builder, no plugin stack — just a fast app the client owns and can restyle as the brand evolves.",
+      es: "Construí la web en código nativo de punta a punta: una superficie pública de marketing con landing y cinco páginas interiores, respaldada por un panel ligero donde se pueden cambiar textos, imágenes y tokens de color sin redesplegar un tema. Sin page builder ni pila de plugins: solo una app rápida que la cliente posee y puede restilar a medida que evoluciona la marca.",
     },
     outcome: {
-      en: "A playable live bingo room you can open on any device: share the link, fill the lobby and run a round without page refreshes or manual sync.",
-      es: "Una sala de bingo en vivo jugable desde cualquier dispositivo: compartes el enlace, llenas el lobby y tiras una ronda sin refrescar ni sincronizar a mano.",
+      en: "A production yoga site that loads fast, matches the brand exactly, and lets the owner update copy, photography and colours from an admin panel — fully customisable without a CMS lock-in.",
+      es: "Una web de yoga en producción que carga rápido, encaja con la marca al detalle y permite a la dueña actualizar textos, fotos y colores desde un panel de administración: 100% personalizable sin quedar atrapada en un CMS.",
     },
     features: [
       {
-        title: { en: "Realtime lobby", es: "Lobby en tiempo real" },
+        title: { en: "Landing + five pages", es: "Landing + cinco páginas" },
         body: {
-          en: "Players appear in the room as they join, ready for the host to start the game.",
-          es: "Los jugadores aparecen en la sala al unirse, listos para que el anfitrión arranque la partida.",
+          en: "Home, studio, classes, schedule, about, pricing and contact wired as a coherent multi-page experience.",
+          es: "Inicio, estudio, clases, horario, sobre mí, precios y contacto enlazados como una experiencia multipágina coherente.",
         },
       },
       {
-        title: { en: "Live ball calls", es: "Cantadas en vivo" },
+        title: { en: "Admin content panel", es: "Panel de contenidos" },
         body: {
-          en: "Each number is pushed over WebSockets so every connected card updates together.",
-          es: "Cada número se emite por WebSockets para que todos los cartones conectados se actualicen a la vez.",
+          en: "Edit texts and swap images from a private admin without opening a code editor.",
+          es: "Edita textos y cambia imágenes desde un admin privado sin abrir el editor de código.",
         },
       },
       {
-        title: { en: "Shared game state", es: "Estado de partida compartido" },
+        title: { en: "Brand colour control", es: "Control de colores de marca" },
         body: {
-          en: "Room state stays authoritative on the server so reconnects and late joins stay consistent.",
-          es: "El estado de la sala queda en el servidor para que reconexiones y entradas tardías sigan siendo coherentes.",
+          en: "Colours and visual tokens adjustable so the look can evolve with the studio.",
+          es: "Colores y tokens visuales ajustables para que la apariencia evolucione con el estudio.",
         },
       },
       {
-        title: { en: "Multi-device play", es: "Juego multi-dispositivo" },
+        title: { en: "Native, builder-free stack", es: "Stack nativo, sin builders" },
         body: {
-          en: "Open the link on phones or laptops in the same room — no install, no refresh loop.",
-          es: "Abre el enlace en móviles u ordenadores en la misma sala: sin instalar ni bucles de refresco.",
+          en: "Custom code instead of WordPress or Wix — faster pages and full ownership of every detail.",
+          es: "Código a medida en lugar de WordPress o Wix: páginas más rápidas y control total de cada detalle.",
         },
       },
     ],
     metrics: [
-      { value: "Live", label: { en: "WebSocket sync", es: "Sincronización WebSocket" } },
-      { value: "Multi", label: { en: "Players per room", es: "Jugadores por sala" } },
-      { value: "0", label: { en: "Page refreshes mid-game", es: "Refrescos a mitad de partida" } },
+      { value: "6", label: { en: "Public pages (landing + 5)", es: "Páginas públicas (landing + 5)" } },
+      { value: "100%", label: { en: "Customisable via admin", es: "Personalizable desde el admin" } },
+      { value: "0", label: { en: "Page-builder lock-in", es: "Dependencia de page builders" } },
     ],
-    stack: ["TypeScript", "React", "WebSockets", "Node.js", "Fly.io"],
-    liveUrl: "https://bingogame.fly.dev/",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    image: "/projects/blau-yoga.png",
+    liveUrl: "https://cyane-yoga.vercel.app/",
+  },
+  {
+    slug: "dance-academy-platform",
+    name: "Wey Productions",
+    category: "platform",
+    icon: "users",
+    accent: "from-brand-400/25 via-brand-600/10 to-transparent",
+    year: "2026",
+    featured: true,
+    tagline: {
+      en: "A booking and membership platform that replaced a dance academy's spreadsheets and WhatsApp groups.",
+      es: "Una plataforma de reservas y membresías que sustituyó las hojas de cálculo y los grupos de WhatsApp de una academia de baile.",
+    },
+    role: { en: "Full-stack developer, direct client project", es: "Desarrollador full-stack, proyecto directo de cliente" },
+    timeline: { en: "4 months", es: "4 meses" },
+    challenge: {
+      en: "The academy ran on a shared spreadsheet, a paper attendance book and several WhatsApp groups. Nobody knew reliably who had paid, classes were double-booked, and the owner spent most of Sunday reconciling the week by hand.",
+      es: "La academia funcionaba con una hoja de cálculo compartida, un libro de asistencia en papel y varios grupos de WhatsApp. Nadie sabía con certeza quién había pagado, las clases se duplicaban y la dueña pasaba casi todo el domingo cuadrando la semana a mano.",
+    },
+    approach: {
+      en: "I modelled the real domain first — courses, terms, class occurrences, memberships and drop-ins — because getting that wrong is what makes booking systems collapse later. On top of it went a public schedule with live capacity, self-service enrolment with recurring payments, QR check-in for the door, and an admin side where the owner can see occupancy, revenue and outstanding payments without exporting anything. Automated reminders replaced the WhatsApp broadcasting entirely.",
+      es: "Modelé primero el dominio real — cursos, trimestres, ocurrencias de clase, membresías y clases sueltas — porque equivocarse ahí es lo que hace que los sistemas de reservas se derrumben después. Encima construí un horario público con aforo en vivo, inscripción autogestionada con pagos recurrentes, check-in por QR en la puerta y un panel donde la dueña ve ocupación, ingresos y pagos pendientes sin exportar nada. Los recordatorios automáticos sustituyeron por completo la difusión por WhatsApp.",
+    },
+    outcome: {
+      en: "Administration collapsed from a full weekend day to a short check on Monday morning. Double bookings stopped, unpaid memberships became visible immediately, and the academy could finally see which classes were actually profitable.",
+      es: "La administración pasó de un día entero de fin de semana a una revisión corta el lunes por la mañana. Se acabaron las reservas duplicadas, los impagos se hicieron visibles al instante y la academia pudo ver por fin qué clases eran realmente rentables.",
+    },
+    features: [
+      {
+        title: { en: "Live schedule and capacity", es: "Horario y aforo en vivo" },
+        body: {
+          en: "A public timetable with real-time places left, waiting lists and cancellation windows.",
+          es: "Un horario público con plazas restantes en tiempo real, listas de espera y ventanas de cancelación.",
+        },
+      },
+      {
+        title: { en: "Memberships and drop-ins", es: "Membresías y clases sueltas" },
+        body: {
+          en: "Recurring subscriptions, class packs and single bookings under one payment flow.",
+          es: "Suscripciones recurrentes, bonos de clases y reservas sueltas en un único flujo de pago.",
+        },
+      },
+      {
+        title: { en: "QR check-in", es: "Check-in por QR" },
+        body: {
+          en: "Attendance taken at the door in seconds, feeding straight into occupancy reporting.",
+          es: "Asistencia registrada en la puerta en segundos, alimentando directamente los informes de ocupación.",
+        },
+      },
+      {
+        title: { en: "Owner dashboard", es: "Panel para la dueña" },
+        body: {
+          en: "Revenue, occupancy per class and outstanding payments, without a single export.",
+          es: "Ingresos, ocupación por clase y pagos pendientes, sin una sola exportación.",
+        },
+      },
+    ],
+    metrics: [
+      { value: "−90%", label: { en: "Time spent on admin", es: "Tiempo dedicado a administración" } },
+      { value: "0", label: { en: "Double bookings since launch", es: "Reservas duplicadas desde el lanzamiento" } },
+      { value: "3x", label: { en: "Faster enrolment for students", es: "Inscripción más rápida para alumnos" } },
+    ],
+    stack: ["Next.js", "TypeScript", "PostgreSQL", "Stripe", "Resend", "Tailwind CSS"],
+    image: "/projects/soriano_app.png",
+    liveUrl: "https://soriano-app.vercel.app/",
   },
   {
     slug: "language-learning-app",
-    name: "Lingua Loop",
+    name: "Bocabla",
     category: "education",
     icon: "graduation-cap",
     accent: "from-brand-500/25 via-brand-600/10 to-transparent",
@@ -623,73 +689,8 @@ export const projects: Project[] = [
     liveUrl: "https://salsa-instruments.vercel.app/",
   },
   {
-    slug: "dance-academy-platform",
-    name: "Ritmo Academy",
-    category: "platform",
-    icon: "users",
-    accent: "from-brand-400/25 via-brand-600/10 to-transparent",
-    year: "2026",
-    featured: true,
-    tagline: {
-      en: "A booking and membership platform that replaced a dance academy's spreadsheets and WhatsApp groups.",
-      es: "Una plataforma de reservas y membresías que sustituyó las hojas de cálculo y los grupos de WhatsApp de una academia de baile.",
-    },
-    role: { en: "Full-stack developer, direct client project", es: "Desarrollador full-stack, proyecto directo de cliente" },
-    timeline: { en: "4 months", es: "4 meses" },
-    challenge: {
-      en: "The academy ran on a shared spreadsheet, a paper attendance book and several WhatsApp groups. Nobody knew reliably who had paid, classes were double-booked, and the owner spent most of Sunday reconciling the week by hand.",
-      es: "La academia funcionaba con una hoja de cálculo compartida, un libro de asistencia en papel y varios grupos de WhatsApp. Nadie sabía con certeza quién había pagado, las clases se duplicaban y la dueña pasaba casi todo el domingo cuadrando la semana a mano.",
-    },
-    approach: {
-      en: "I modelled the real domain first — courses, terms, class occurrences, memberships and drop-ins — because getting that wrong is what makes booking systems collapse later. On top of it went a public schedule with live capacity, self-service enrolment with recurring payments, QR check-in for the door, and an admin side where the owner can see occupancy, revenue and outstanding payments without exporting anything. Automated reminders replaced the WhatsApp broadcasting entirely.",
-      es: "Modelé primero el dominio real — cursos, trimestres, ocurrencias de clase, membresías y clases sueltas — porque equivocarse ahí es lo que hace que los sistemas de reservas se derrumben después. Encima construí un horario público con aforo en vivo, inscripción autogestionada con pagos recurrentes, check-in por QR en la puerta y un panel donde la dueña ve ocupación, ingresos y pagos pendientes sin exportar nada. Los recordatorios automáticos sustituyeron por completo la difusión por WhatsApp.",
-    },
-    outcome: {
-      en: "Administration collapsed from a full weekend day to a short check on Monday morning. Double bookings stopped, unpaid memberships became visible immediately, and the academy could finally see which classes were actually profitable.",
-      es: "La administración pasó de un día entero de fin de semana a una revisión corta el lunes por la mañana. Se acabaron las reservas duplicadas, los impagos se hicieron visibles al instante y la academia pudo ver por fin qué clases eran realmente rentables.",
-    },
-    features: [
-      {
-        title: { en: "Live schedule and capacity", es: "Horario y aforo en vivo" },
-        body: {
-          en: "A public timetable with real-time places left, waiting lists and cancellation windows.",
-          es: "Un horario público con plazas restantes en tiempo real, listas de espera y ventanas de cancelación.",
-        },
-      },
-      {
-        title: { en: "Memberships and drop-ins", es: "Membresías y clases sueltas" },
-        body: {
-          en: "Recurring subscriptions, class packs and single bookings under one payment flow.",
-          es: "Suscripciones recurrentes, bonos de clases y reservas sueltas en un único flujo de pago.",
-        },
-      },
-      {
-        title: { en: "QR check-in", es: "Check-in por QR" },
-        body: {
-          en: "Attendance taken at the door in seconds, feeding straight into occupancy reporting.",
-          es: "Asistencia registrada en la puerta en segundos, alimentando directamente los informes de ocupación.",
-        },
-      },
-      {
-        title: { en: "Owner dashboard", es: "Panel para la dueña" },
-        body: {
-          en: "Revenue, occupancy per class and outstanding payments, without a single export.",
-          es: "Ingresos, ocupación por clase y pagos pendientes, sin una sola exportación.",
-        },
-      },
-    ],
-    metrics: [
-      { value: "−90%", label: { en: "Time spent on admin", es: "Tiempo dedicado a administración" } },
-      { value: "0", label: { en: "Double bookings since launch", es: "Reservas duplicadas desde el lanzamiento" } },
-      { value: "3x", label: { en: "Faster enrolment for students", es: "Inscripción más rápida para alumnos" } },
-    ],
-    stack: ["Next.js", "TypeScript", "PostgreSQL", "Stripe", "Resend", "Tailwind CSS"],
-    image: "/projects/soriano_app.png",
-    liveUrl: "https://soriano-app.vercel.app/",
-  },
-  {
     slug: "net-worth-tracker",
-    name: "Net Worth Ledger",
+    name: "Net Worth App",
     category: "fintech",
     icon: "wallet",
     accent: "from-emerald-400/20 via-brand-500/10 to-transparent",
@@ -750,6 +751,70 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle", "Recharts", "Tailwind CSS"],
     liveUrl: "https://net-worth-app-antoni-bassols-lopezs-projects.vercel.app/",
+  },
+  {
+    slug: "bingo-live",
+    name: "Bingo Live",
+    category: "realtime",
+    icon: "grid",
+    accent: "from-brand-500/30 via-accent-500/15 to-transparent",
+    year: "2026",
+    featured: true,
+    tagline: {
+      en: "A multiplayer bingo game where cards, calls and winners sync live over WebSockets.",
+      es: "Un bingo multijugador donde cartones, cantadas y ganadores se sincronizan en vivo con WebSockets.",
+    },
+    role: { en: "Sole developer", es: "Desarrollador único" },
+    timeline: { en: "Personal project", es: "Proyecto personal" },
+    challenge: {
+      en: "Bingo only works when every player sees the same ball at the same moment. A refresh-based UI lags, desyncs cards and ruins the room the second someone joins late or drops offline mid-round.",
+      es: "El bingo solo funciona si todos ven la misma bola en el mismo instante. Una UI a base de refrescos se desfasa, desincroniza cartones y rompe la sala en cuanto alguien entra tarde o se cae a mitad de ronda.",
+    },
+    approach: {
+      en: "I built a lobby-to-game flow on a realtime WebSocket channel: players join a room, the host starts the round, and every call is broadcast so cards mark themselves and win conditions are checked on the server. Late joiners catch up from room state instead of guessing what they missed.",
+      es: "Monté el flujo de lobby a partida sobre un canal WebSocket en tiempo real: los jugadores entran a una sala, el anfitrión arranca la ronda y cada cantada se emite para que los cartones se marquen solos y las condiciones de victoria se validen en el servidor. Quien entra tarde recupera el estado de la sala en lugar de adivinar lo que se perdió.",
+    },
+    outcome: {
+      en: "A playable live bingo room you can open on any device: share the link, fill the lobby and run a round without page refreshes or manual sync.",
+      es: "Una sala de bingo en vivo jugable desde cualquier dispositivo: compartes el enlace, llenas el lobby y tiras una ronda sin refrescar ni sincronizar a mano.",
+    },
+    features: [
+      {
+        title: { en: "Realtime lobby", es: "Lobby en tiempo real" },
+        body: {
+          en: "Players appear in the room as they join, ready for the host to start the game.",
+          es: "Los jugadores aparecen en la sala al unirse, listos para que el anfitrión arranque la partida.",
+        },
+      },
+      {
+        title: { en: "Live ball calls", es: "Cantadas en vivo" },
+        body: {
+          en: "Each number is pushed over WebSockets so every connected card updates together.",
+          es: "Cada número se emite por WebSockets para que todos los cartones conectados se actualicen a la vez.",
+        },
+      },
+      {
+        title: { en: "Shared game state", es: "Estado de partida compartido" },
+        body: {
+          en: "Room state stays authoritative on the server so reconnects and late joins stay consistent.",
+          es: "El estado de la sala queda en el servidor para que reconexiones y entradas tardías sigan siendo coherentes.",
+        },
+      },
+      {
+        title: { en: "Multi-device play", es: "Juego multi-dispositivo" },
+        body: {
+          en: "Open the link on phones or laptops in the same room — no install, no refresh loop.",
+          es: "Abre el enlace en móviles u ordenadores en la misma sala: sin instalar ni bucles de refresco.",
+        },
+      },
+    ],
+    metrics: [
+      { value: "Live", label: { en: "WebSocket sync", es: "Sincronización WebSocket" } },
+      { value: "Multi", label: { en: "Players per room", es: "Jugadores por sala" } },
+      { value: "0", label: { en: "Page refreshes mid-game", es: "Refrescos a mitad de partida" } },
+    ],
+    stack: ["TypeScript", "React", "WebSockets", "Node.js", "Fly.io"],
+    liveUrl: "https://bingogame.fly.dev/",
   },
   {
     slug: "smart-cv-builder",
