@@ -39,7 +39,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
             onClick={() => select(locale)}
             aria-current={isActive ? "true" : undefined}
             className={cn(
-              "rounded-full px-2.5 py-1 text-xs font-semibold uppercase transition-colors",
+              "cursor-pointer rounded-full px-2.5 py-1 text-xs font-semibold uppercase transition-colors",
               isActive
                 ? "bg-brand-500/15 text-brand"
                 : "text-ink-3 hover:text-ink",

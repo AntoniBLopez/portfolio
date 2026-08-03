@@ -9,7 +9,7 @@
  */
 
 import type { IconName } from "@/components/ui/icon";
-import { contact } from "@/config/contact";
+import { contact, whatsappUrl } from "@/config/contact";
 import { links, socialLinks } from "@/config/links";
 
 export type Localized = { en: string; es: string };
@@ -45,6 +45,8 @@ export const profile = {
 
   /** Re-exported from `@/config/contact` so existing `profile.email` call sites keep working. */
   email: contact.email,
+  phone: contact.phone,
+  whatsappUrl,
   // TODO: replace with your real booking URL.
   calendarUrl: "https://cal.com/your-handle/intro",
   /** Re-exported from `@/config/links` so existing `profile.fiverrUrl` call sites keep working. */
@@ -1076,6 +1078,7 @@ export const services: Service[] = [
             "Authentication and user roles",
             "Database design and admin panel",
             "Payments and third-party integrations",
+            "AI integration when the product needs it",
             "Automated tests on critical paths",
             "CI/CD pipeline and monitoring",
             "Technical documentation and handover",
@@ -1084,6 +1087,7 @@ export const services: Service[] = [
             "Autenticación y roles de usuario",
             "Diseño de base de datos y panel de administración",
             "Pagos e integraciones con terceros",
+            "Integración de IA cuando el producto lo necesite",
             "Tests automáticos en los flujos críticos",
             "Pipeline de CI/CD y monitorización",
             "Documentación técnica y traspaso",

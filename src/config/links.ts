@@ -1,4 +1,5 @@
 import type { IconName } from "@/components/ui/icon";
+import { whatsappUrl } from "@/config/contact";
 
 /**
  * Canonical external URLs. Import from here anywhere you need a social or
@@ -8,6 +9,7 @@ export const links = {
   github: "https://github.com/AntoniBLopez",
   linkedin: "https://www.linkedin.com/in/antoniblopez/",
   fiverr: "https://www.fiverr.com/antonilopez_dev",
+  whatsapp: whatsappUrl,
 } as const;
 
 export type SocialLink = {
@@ -19,7 +21,7 @@ export type SocialLink = {
 
 /** Ordered list used in the hero, footer and contact panel. */
 export const socialLinks: readonly SocialLink[] = [
-  { id: "github", label: "GitHub", href: links.github, icon: "github" },
+  { id: "whatsapp", label: "WhatsApp", href: links.whatsapp, icon: "whatsapp" },
   { id: "linkedin", label: "LinkedIn", href: links.linkedin, icon: "linkedin" },
   { id: "fiverr", label: "Fiverr", href: links.fiverr, icon: "briefcase" },
 ] as const;
