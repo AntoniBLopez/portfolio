@@ -507,8 +507,8 @@ export const projects: Project[] = [
     year: "2026",
     featured: true,
     tagline: {
-      en: "A booking and membership platform that replaced a dance academy's spreadsheets and WhatsApp groups.",
-      es: "Una plataforma de reservas y membresías que sustituyó las hojas de cálculo y los grupos de WhatsApp de una academia de baile.",
+      en: "Custom dynamic web app for a Barcelona dance academy. Responsive, fast, and built with solid SEO.",
+      es: "Aplicación web dinámica hecha a medida para una academia de baile de Barcelona. Responsive, rápida y con buen SEO.",
     },
     role: { en: "Full-stack developer, direct client project", es: "Desarrollador full-stack, proyecto directo de cliente" },
     timeline: { en: "4 months", es: "4 meses" },
