@@ -625,6 +625,7 @@ export const projects: Project[] = [
       { value: "<1s", label: { en: "Time to first exercise", es: "Tiempo al primer ejercicio" } },
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS", "Web Audio API"],
+    image: "/projects/bocabla.png",
   },
   {
     slug: "salsa-hits-offline",
