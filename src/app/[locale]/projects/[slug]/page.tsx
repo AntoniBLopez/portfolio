@@ -13,7 +13,11 @@ import { GradientMesh } from "@/components/gradient-mesh";
 import { AnimatedGroup, Reveal } from "@/components/ui/reveal";
 import { ProjectsCta } from "@/components/sections/projects-cta";
 import { JsonLd, breadcrumbSchema } from "@/components/json-ld";
-import { getProject, projectCategories, projects, tx } from "@/content/site";
+import { getProject, projectCategories, projects, tx, txList } from "@/content/site";
+import { engagementLabel } from "@/lib/project-engagement";
+import { getAudience } from "@/lib/get-audience";
+import { projectHref } from "@/lib/audience";
+import { resolveProjectView } from "@/lib/project-view";
 import { buildMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
@@ -23,32 +27,44 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string; slug: string }>;
+  searchParams: Promise<{ from?: string | string[] }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
+  const { from } = await searchParams;
   const project = getProject(slug);
 
   if (!project) return {};
 
+  const audience = await getAudience(from);
+  const view = resolveProjectView(project, audience);
+
   return buildMetadata({
     locale,
     path: `/projects/${slug}`,
-    title: `${project.name} — ${tx(project.tagline, locale).replace(/\.$/, "")}`,
-    description: tx(project.tagline, locale),
+    title: `${project.name} — ${tx(view.tagline, locale).replace(/\.$/, "")}`,
+    description: tx(view.tagline, locale),
   });
 }
 
 export default async function ProjectPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string; slug: string }>;
+  searchParams: Promise<{ from?: string | string[] }>;
 }) {
   const { locale, slug } = await params;
+  const { from } = await searchParams;
   setRequestLocale(locale);
 
   const project = getProject(slug);
   if (!project) notFound();
+
+  const audience = await getAudience(from);
+  const view = resolveProjectView(project, audience);
 
   const t = await getTranslations({ locale, namespace: "Projects" });
   const tc = await getTranslations({ locale, namespace: "Common" });
@@ -58,10 +74,19 @@ export default async function ProjectPage({
   const currentIndex = projects.findIndex((item) => item.slug === project.slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
+  const challengeLabel =
+    audience === "recruiter" ? t("challengeLabel") : t("challengeLabelBusiness");
+  const approachLabel =
+    audience === "recruiter" ? t("approachLabel") : t("approachLabelBusiness");
+  const outcomeLabel =
+    audience === "recruiter" ? t("outcomeLabel") : t("outcomeLabelBusiness");
+  const featuresLabel =
+    audience === "recruiter" ? t("featuresLabel") : t("featuresLabelBusiness");
+
   const sections = [
-    { label: t("challengeLabel"), body: tx(project.challenge, locale), icon: "target" as const },
-    { label: t("approachLabel"), body: tx(project.approach, locale), icon: "blocks" as const },
-    { label: t("outcomeLabel"), body: tx(project.outcome, locale), icon: "trending-up" as const },
+    { label: challengeLabel, body: tx(view.challenge, locale), icon: "target" as const },
+    { label: approachLabel, body: tx(view.approach, locale), icon: "blocks" as const },
+    { label: outcomeLabel, body: tx(view.outcome, locale), icon: "trending-up" as const },
   ];
 
   return (
@@ -71,21 +96,24 @@ export default async function ProjectPage({
 
         <Container size="wide" className="relative">
           <Link
-            href="/projects"
+            href={audience === "recruiter" ? "/projects" : audience === "web" ? "/web" : "/ai"}
             className="group inline-flex items-center gap-2 text-sm text-ink-2 transition-colors hover:text-ink"
           >
             <Icon
               name="arrow-left"
               className="size-4 transition-transform group-hover:-translate-x-0.5"
             />
-            {tc("backToProjects")}
+            {audience === "recruiter" ? tc("backToProjects") : t("backToOffer")}
           </Link>
 
           <div className="mt-10 grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
             <div className="flex flex-col gap-6">
               <div className="flex flex-wrap items-center gap-2">
-                {category && <Badge variant="brand">{tx(category.label, locale)}</Badge>}
+                {category && audience === "recruiter" && (
+                  <Badge variant="brand">{tx(category.label, locale)}</Badge>
+                )}
                 <Badge variant="outline">{project.year}</Badge>
+                <Badge variant="outline">{engagementLabel(project.engagement, t)}</Badge>
               </div>
 
               <h1 className="text-4xl font-semibold tracking-tight text-ink sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
@@ -93,7 +121,7 @@ export default async function ProjectPage({
               </h1>
 
               <p className="max-w-2xl text-base leading-relaxed text-ink-2 sm:text-lg">
-                {tx(project.tagline, locale)}
+                {tx(view.tagline, locale)}
               </p>
 
               <div className="flex flex-wrap gap-3 pt-2">
@@ -108,7 +136,7 @@ export default async function ProjectPage({
                     <Icon name="arrow-up-right" className="size-4" />
                   </a>
                 )}
-                {project.repoUrl && (
+                {project.repoUrl && audience === "recruiter" && (
                   <a
                     href={project.repoUrl}
                     target="_blank"
@@ -148,20 +176,42 @@ export default async function ProjectPage({
             </div>
           </div>
 
-          <dl className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:grid-cols-3">
-            <MetaCell label={t("roleLabel")} value={tx(project.role, locale)} />
-            <MetaCell label={t("timelineLabel")} value={tx(project.timeline, locale)} />
-            <MetaCell
-              label={t("typeLabel")}
-              value={category ? tx(category.label, locale) : project.category}
-            />
+          <dl
+            className={cn(
+              "mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:grid-cols-2",
+              audience === "recruiter" ? "lg:grid-cols-4" : "lg:grid-cols-3",
+            )}
+          >
+            <MetaCell label={t("engagementLabel")} value={engagementLabel(project.engagement, t)} />
+            {audience === "recruiter" ? (
+              <>
+                <MetaCell label={t("roleLabel")} value={tx(project.role, locale)} />
+                <MetaCell label={t("timelineLabel")} value={tx(project.timeline, locale)} />
+                <MetaCell
+                  label={t("typeLabel")}
+                  value={category ? tx(category.label, locale) : project.category}
+                />
+              </>
+            ) : (
+              <>
+                <MetaCell label={t("timelineLabel")} value={tx(project.timeline, locale)} />
+                <MetaCell
+                  label={t("typeLabel")}
+                  value={
+                    audience === "web"
+                      ? t("typeWebBusiness")
+                      : t("typeAiBusiness")
+                  }
+                />
+              </>
+            )}
           </dl>
         </Container>
       </section>
 
       <Section containerSize="wide" className="border-t border-line py-16">
         <AnimatedGroup className="grid gap-6 sm:grid-cols-3" itemClassName="h-full" stagger={0.08}>
-          {project.metrics.map((metric) => (
+          {view.metrics.map((metric) => (
             <Card key={metric.label.en} className="h-full p-7">
               <p className="text-4xl font-semibold tracking-tight text-brand">{metric.value}</p>
               <p className="mt-2 text-sm text-ink-2">{tx(metric.label, locale)}</p>
@@ -170,7 +220,29 @@ export default async function ProjectPage({
         </AnimatedGroup>
       </Section>
 
-      <Section containerSize="wide" className="border-t border-line bg-canvas-2">
+      {view.showBenefits && view.benefits && (
+        <Section containerSize="wide" className="border-t border-line bg-canvas-2">
+          <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+            {t("benefitsLabel")}
+          </h2>
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            {txList(view.benefits, locale).map((benefit) => (
+              <li
+                key={benefit}
+                className="flex items-start gap-3 rounded-xl bg-panel p-4 text-sm text-ink-2 ring-1 ring-line"
+              >
+                <Icon name="check-circle" className="mt-0.5 size-4 shrink-0 text-brand" />
+                {benefit}
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )}
+
+      <Section
+        containerSize="wide"
+        className={cn("border-t border-line", !view.showBenefits && "bg-canvas-2")}
+      >
         <div className="flex flex-col gap-14">
           {sections.map((section) => (
             <Reveal key={section.label}>
@@ -192,7 +264,7 @@ export default async function ProjectPage({
 
       <Section containerSize="wide" className="border-t border-line">
         <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-          {t("featuresLabel")}
+          {featuresLabel}
         </h2>
 
         <AnimatedGroup
@@ -200,7 +272,7 @@ export default async function ProjectPage({
           itemClassName="h-full"
           stagger={0.07}
         >
-          {project.features.map((feature) => (
+          {view.features.map((feature) => (
             <Card key={feature.title.en} className="h-full p-7" interactive>
               <h3 className="text-base font-semibold text-ink">{tx(feature.title, locale)}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-ink-2">
@@ -210,24 +282,26 @@ export default async function ProjectPage({
           ))}
         </AnimatedGroup>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-line pt-10">
-          <h3 className="text-xs font-semibold tracking-[0.18em] text-ink-3 uppercase">
-            {t("stackLabel")}
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {project.stack.map((item) => (
-              <Badge key={item} variant="tech" className="px-3 py-1.5 text-sm">
-                {item}
-              </Badge>
-            ))}
+        {view.showStack && (
+          <div className="mt-14 flex flex-col gap-4 border-t border-line pt-10">
+            <h3 className="text-xs font-semibold tracking-[0.18em] text-ink-3 uppercase">
+              {t("stackLabel")}
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {project.stack.map((item) => (
+                <Badge key={item} variant="tech" className="px-3 py-1.5 text-sm">
+                  {item}
+                </Badge>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </Section>
 
       {nextProject.slug !== project.slug && (
         <Section containerSize="wide" className="border-t border-line pb-0">
           <Link
-            href={`/projects/${nextProject.slug}`}
+            href={projectHref(nextProject.slug, audience)}
             className="group flex flex-col gap-5 rounded-2xl bg-panel p-6 ring-1 ring-line transition-all hover:-translate-y-1 hover:ring-line-hi sm:flex-row sm:items-center sm:gap-8 sm:p-8"
           >
             <div className="flex min-w-0 flex-1 flex-col gap-1.5">

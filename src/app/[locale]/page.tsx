@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { AudienceBeacon } from "@/components/audience-beacon";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
 import { Experience } from "@/components/sections/experience";
@@ -37,10 +38,11 @@ export default async function HomePage({
 
   return (
     <>
+      <AudienceBeacon audience="recruiter" />
       <Hero locale={locale} />
       <About locale={locale} />
       <Experience locale={locale} />
-      <Projects locale={locale} />
+      <Projects locale={locale} audience="recruiter" />
       <Services locale={locale} />
       <Contact locale={locale} />
     </>

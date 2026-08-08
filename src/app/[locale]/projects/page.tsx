@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { GradientMesh } from "@/components/gradient-mesh";
 import { ProjectGrid } from "@/components/project-grid";
 import { ProjectsCta } from "@/components/sections/projects-cta";
+import { getAudience } from "@/lib/get-audience";
 import { buildMetadata } from "@/lib/seo";
 
 const PATH = "/projects";
@@ -39,6 +40,7 @@ export default async function ProjectsPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const audience = await getAudience();
   const t = await getTranslations({ locale, namespace: "Projects" });
 
   return (
@@ -57,7 +59,7 @@ export default async function ProjectsPage({
 
       <Section containerSize="wide" className="pt-4">
         <h2 className="sr-only">{t("indexTitle")}</h2>
-        <ProjectGrid />
+        <ProjectGrid audience={audience} />
       </Section>
 
       <ProjectsCta locale={locale} />

@@ -33,7 +33,7 @@
     "servicesMenuLabel": "Lo que ofrezco"
   },
   "Hero": {
-    "availability": "Disponible para nuevos proyectos",
+    "availability": "Abierto a roles full-time y proyectos selectos",
     "scrollHint": "Desliza para explorar",
     "statsExperience": "Años desarrollando para producción",
     "statsProjects": "Productos entregados de principio a fin",
@@ -65,13 +65,35 @@
     "timelineLabel": "Duración",
     "stackLabel": "Stack",
     "typeLabel": "Área",
+    "engagementLabel": "Encargo",
+    "engagementClient": "Proyecto de cliente",
+    "engagementClientPrice": "Cliente · {price}",
+    "engagementAltruistic": "Proyecto altruista",
+    "engagementPersonal": "Proyecto personal",
+    "engagementInterview": "Proyecto para entrevista",
     "challengeLabel": "El reto",
     "approachLabel": "Lo que construí",
     "outcomeLabel": "Resultado",
     "featuresLabel": "Capacidades clave",
+    "challengeLabelBusiness": "El problema",
+    "approachLabelBusiness": "Cómo lo resolvimos",
+    "outcomeLabelBusiness": "Qué cambió",
+    "featuresLabelBusiness": "Qué te llevas",
+    "benefitsLabel": "Por qué funciona para el negocio",
+    "viewProject": "Ver el proyecto",
+    "backToOffer": "Volver",
+    "typeWebBusiness": "Web / aplicación",
+    "typeAiBusiness": "Operaciones y automatización",
     "nextProject": "Siguiente proyecto",
     "ctaTitle": "¿Quieres algo así para tu negocio?",
     "ctaBody": "Cuéntame qué quieres construir y te diré con honestidad qué hace falta para lanzarlo."
+  },
+  "AudienceProjects": {
+    "eyebrow": "Ejemplos reales",
+    "webTitle": "Ejemplos para academias y estudios",
+    "webSubtitle": "Webs y apps reales: rápidas en el móvil, reserva o contacto claro, y herramientas que el dueño puede usar sin ser técnico.",
+    "aiTitle": "Donde el proceso se convierte en producto",
+    "aiSubtitle": "Ejemplos de sustituir el caos de WhatsApp y las hojas de cálculo por sistemas que ahorran tiempo cada semana."
   },
   "Services": {
     "eyebrow": "Lo que puedo hacer por ti",
@@ -92,9 +114,15 @@
   },
   "WebLanding": {
     "yearsLabel": "años",
-    "headline": "Webs y aplicaciones que cargan rápido, posicionan bien y convierten visitas en clientes.",
-    "summary": "Desarrollador full-stack con más de 4 años de experiencia lanzando webs y aplicaciones en producción. Precio fijo y entrega rápida — disponible directamente o por Fiverr.",
-    "primaryCta": "Ver paquetes"
+    "headline": "Webs para academias de baile, yoga y fitness — claras, rápidas en el móvil y fáciles para que el alumno reserve o te contacte.",
+    "summary": "Pensadas para dueños de estudio o academia que no son técnicos: precio fijo, lenguaje sencillo y un admin para cambiar textos y fotos sin llamar a un programador. También encaja en marcas personales y pequeños negocios que necesitan esa misma claridad.",
+    "primaryCta": "Ver paquetes",
+    "secondaryCta": "Ver ejemplos reales",
+    "photoAlt": "{name}, desarrollador web",
+    "photoCaption": "una persona real con la que puedes hablar",
+    "crossSellEyebrow": "No solo webs",
+    "crossSellTitle": "Dos formas de trabajar conmigo",
+    "crossSellSubtitle": "La mayoría llega buscando una web. Si también te interesa la IA para WhatsApp, reservas, recordatorios o el admin que te come la semana — esa vía también está aquí."
   },
   "AiAutomation": {
     "roiEyebrow": "El caso de negocio",
@@ -176,8 +204,8 @@
     "projectsDescription": "Casos prácticos de productos full-stack que he diseñado, construido y lanzado: plataformas de aprendizaje, apps offline-first y gestores financieros.",
     "webTitle": "Servicios de Desarrollo Web",
     "webDescription": "Webs y aplicaciones web rápidas, accesibles y orientadas a conversión, construidas por un desarrollador full-stack senior. Alcance fijo, precio fijo, entrega a tiempo.",
-    "webLandingTitle": "Desarrollo Web — Antoni B. López",
-    "webLandingDescription": "Desarrollador full-stack con más de 4 años de experiencia. Landing pages, webs multipágina y aplicaciones a medida — alcance fijo, precio fijo, entrega a tiempo.",
+    "webLandingTitle": "Webs para academias y estudios — Antoni B. López",
+    "webLandingDescription": "Webs para academias de baile, yoga y fitness: rápidas en el móvil, fáciles de actualizar y claras para que el alumno reserve o te contacte. Precio fijo.",
     "aiTitle": "Automatización de Negocio con IA",
     "aiDescription": "Audito tu operación, encuentro el trabajo manual que consume tu margen y despliego automatización con IA que devuelve hasta 100.000 EUR al año.",
     "notFoundTitle": "Página no encontrada"

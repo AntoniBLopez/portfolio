@@ -33,7 +33,7 @@
     "servicesMenuLabel": "What I offer"
   },
   "Hero": {
-    "availability": "Available for new projects",
+    "availability": "Open to full-time roles and select projects",
     "scrollHint": "Scroll to explore",
     "statsExperience": "Years building for production",
     "statsProjects": "Products shipped end to end",
@@ -65,13 +65,35 @@
     "timelineLabel": "Timeline",
     "stackLabel": "Stack",
     "typeLabel": "Focus",
+    "engagementLabel": "Commission",
+    "engagementClient": "Client project",
+    "engagementClientPrice": "Client · {price}",
+    "engagementAltruistic": "Altruistic project",
+    "engagementPersonal": "Personal project",
+    "engagementInterview": "Interview demo",
     "challengeLabel": "The challenge",
     "approachLabel": "What I built",
     "outcomeLabel": "Outcome",
     "featuresLabel": "Key capabilities",
+    "challengeLabelBusiness": "The problem",
+    "approachLabelBusiness": "How we solved it",
+    "outcomeLabelBusiness": "What changed",
+    "featuresLabelBusiness": "What you get",
+    "benefitsLabel": "Why it works for the business",
+    "viewProject": "See the project",
+    "backToOffer": "Back",
+    "typeWebBusiness": "Website / web app",
+    "typeAiBusiness": "Operations & automation",
     "nextProject": "Next project",
     "ctaTitle": "Want something like this for your business?",
     "ctaBody": "Tell me what you are trying to build and I will tell you honestly what it takes to ship it."
+  },
+  "AudienceProjects": {
+    "eyebrow": "Real examples",
+    "webTitle": "Examples for academies and studios",
+    "webSubtitle": "Real sites and apps: fast on phones, clear booking or contact, and tools the owner can use without being technical.",
+    "aiTitle": "Where process meets product",
+    "aiSubtitle": "Examples of replacing WhatsApp chaos and spreadsheets with systems that save time every week."
   },
   "Services": {
     "eyebrow": "What I can do for you",
@@ -92,9 +114,15 @@
   },
   "WebLanding": {
     "yearsLabel": "years",
-    "headline": "Websites and web apps that load fast, rank well and turn visitors into customers.",
-    "summary": "Full-stack developer with over 4 years of experience shipping production websites and web applications. Fixed price and fast delivery — available directly or through Fiverr.",
-    "primaryCta": "See packages"
+    "headline": "Websites for dance, yoga and fitness academies — clear, fast on phones, and easy for students to book or contact you.",
+    "summary": "Built for studio and academy owners who are not technical: fixed price, plain language, and an admin so you can change texts and photos without calling a developer. Also fits personal brands and small businesses that need the same clarity.",
+    "primaryCta": "See packages",
+    "secondaryCta": "See real examples",
+    "photoAlt": "{name}, web developer",
+    "photoCaption": "a real person you can talk to",
+    "crossSellEyebrow": "Not only websites",
+    "crossSellTitle": "Two ways to work with me",
+    "crossSellSubtitle": "Most people here need a site first. If you also want AI for WhatsApp, bookings, reminders or admin work that eats your week — that path is available too."
   },
   "AiAutomation": {
     "roiEyebrow": "The business case",
@@ -176,8 +204,8 @@
     "projectsDescription": "Case studies from full-stack products I have designed, built and shipped, from learning platforms to offline-first apps and financial trackers.",
     "webTitle": "Web Development Services",
     "webDescription": "Fast, accessible, conversion-focused websites and web applications built by a senior full-stack developer. Fixed scope, fixed price, shipped on time.",
-    "webLandingTitle": "Web Development — Antoni B. López",
-    "webLandingDescription": "Full-stack developer with 4+ years of experience. Landing pages, multi-page sites and custom web apps — fixed scope, fixed price, shipped on time.",
+    "webLandingTitle": "Websites for academies & studios — Antoni B. López",
+    "webLandingDescription": "Websites for dance, yoga and fitness academies: fast on phones, easy to update, clear for students to book or contact you. Fixed price.",
     "aiTitle": "AI Business Automation",
     "aiDescription": "I audit your operation, find the manual work draining your margin, and deploy AI automation that returns up to 100.000 EUR a year.",
     "notFoundTitle": "Page not found"

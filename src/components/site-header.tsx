@@ -88,8 +88,8 @@ export function SiteHeader() {
   }, [isHome]);
 
   const serviceLinks = [
-    { href: "/services/web-development", label: t("services_web"), icon: "code" as const },
-    { href: "/services/ai-automation", label: t("services_ai"), icon: "bot" as const },
+    { href: "/web", label: t("services_web"), icon: "code" as const },
+    { href: "/ai", label: t("services_ai"), icon: "bot" as const },
   ];
 
   function renderSectionLink(id: string, label: string, className?: string) {

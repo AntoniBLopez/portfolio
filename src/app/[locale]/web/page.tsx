@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { AudienceBeacon } from "@/components/audience-beacon";
+import { AudienceProjects } from "@/components/sections/audience-projects";
+import { Services } from "@/components/sections/services";
+import { Contact } from "@/components/sections/contact";
 import { WebLandingHero } from "@/components/service/web-landing-hero";
 import { WebDevelopmentContent } from "@/components/service/web-development-content";
 import { JsonLd, breadcrumbSchema } from "@/components/json-ld";
@@ -38,11 +42,22 @@ export default async function WebLandingPage({
   setRequestLocale(locale);
 
   const tn = await getTranslations({ locale, namespace: "Nav" });
+  const tw = await getTranslations({ locale, namespace: "WebLanding" });
 
   return (
     <>
+      <AudienceBeacon audience="web" />
       <WebLandingHero locale={locale} />
+      <AudienceProjects locale={locale} audience="web" />
       <WebDevelopmentContent locale={locale} />
+      <Services
+        locale={locale}
+        id="also"
+        eyebrow={tw("crossSellEyebrow")}
+        title={tw("crossSellTitle")}
+        subtitle={tw("crossSellSubtitle")}
+      />
+      <Contact locale={locale} defaultProjectType="web" />
 
       <JsonLd
         data={breadcrumbSchema(locale, [

@@ -4,8 +4,15 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { LinkButton } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { ProjectGrid } from "@/components/project-grid";
+import { DEFAULT_AUDIENCE, type Audience } from "@/lib/audience";
 
-export async function Projects({ locale }: { locale: string }) {
+export async function Projects({
+  locale,
+  audience = DEFAULT_AUDIENCE,
+}: {
+  locale: string;
+  audience?: Audience;
+}) {
   const t = await getTranslations({ locale, namespace: "Projects" });
   const tc = await getTranslations({ locale, namespace: "Common" });
 
@@ -28,7 +35,7 @@ export async function Projects({ locale }: { locale: string }) {
       </div>
 
       <div className="mt-14">
-        <ProjectGrid />
+        <ProjectGrid audience={audience} />
       </div>
     </Section>
   );

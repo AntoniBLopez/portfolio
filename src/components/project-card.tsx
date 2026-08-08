@@ -5,13 +5,12 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Icon } from "@/components/ui/icon";
-import { projectCategories, tx, type Project } from "@/content/site";
+import { projectCategories, tx, txList, type Project } from "@/content/site";
+import { engagementLabel } from "@/lib/project-engagement";
+import { DEFAULT_AUDIENCE, projectHref, type Audience } from "@/lib/audience";
+import { resolveProjectView } from "@/lib/project-view";
 import { cn } from "@/lib/utils";
 
-/**
- * Visual header for a project. Uses a cover image when available,
- * otherwise falls back to the accent + icon treatment.
- */
 function ProjectVisual({ project }: { project: Project }) {
   return (
     <div className="relative aspect-16/10 overflow-hidden border-b border-line bg-canvas-2">
@@ -41,14 +40,22 @@ function ProjectVisual({ project }: { project: Project }) {
   );
 }
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  audience = DEFAULT_AUDIENCE,
+}: {
+  project: Project;
+  audience?: Audience;
+}) {
   const locale = useLocale();
   const t = useTranslations("Common");
+  const tp = useTranslations("Projects");
   const category = projectCategories.find((item) => item.id === project.category);
+  const view = resolveProjectView(project, audience);
 
   return (
     <Link
-      href={`/projects/${project.slug}`}
+      href={projectHref(project.slug, audience)}
       className="group flex h-full flex-col overflow-hidden rounded-2xl bg-panel ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:ring-line-hi hover:shadow-2xl hover:shadow-brand-950/25"
     >
       <ProjectVisual project={project} />
@@ -57,24 +64,42 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between gap-3">
             <h3 className="text-lg font-semibold tracking-tight text-ink">{project.name}</h3>
-            {category && <Badge variant="brand">{tx(category.label, locale)}</Badge>}
+            {category && audience === "recruiter" && (
+              <Badge variant="brand">{tx(category.label, locale)}</Badge>
+            )}
           </div>
-          <p className="text-sm leading-relaxed text-ink-2">{tx(project.tagline, locale)}</p>
+          <Badge variant="outline" className="w-fit">
+            {engagementLabel(project.engagement, tp)}
+          </Badge>
+          <p className="text-sm leading-relaxed text-ink-2">{tx(view.tagline, locale)}</p>
         </div>
 
-        <div className="flex flex-wrap gap-1.5">
-          {project.stack.slice(0, 4).map((item) => (
-            <Badge key={item} variant="tech">
-              {item}
-            </Badge>
-          ))}
-          {project.stack.length > 4 && (
-            <Badge variant="tech">+{project.stack.length - 4}</Badge>
-          )}
-        </div>
+        {view.showStack ? (
+          <div className="flex flex-wrap gap-1.5">
+            {project.stack.slice(0, 4).map((item) => (
+              <Badge key={item} variant="tech">
+                {item}
+              </Badge>
+            ))}
+            {project.stack.length > 4 && (
+              <Badge variant="tech">+{project.stack.length - 4}</Badge>
+            )}
+          </div>
+        ) : view.showBenefits && view.benefits ? (
+          <ul className="flex flex-col gap-1.5">
+            {txList(view.benefits, locale)
+              .slice(0, 3)
+              .map((benefit) => (
+                <li key={benefit} className="flex items-start gap-2 text-xs text-ink-2">
+                  <Icon name="check" className="mt-0.5 size-3.5 shrink-0 text-brand" />
+                  {benefit}
+                </li>
+              ))}
+          </ul>
+        ) : null}
 
         <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-medium text-brand">
-          {t("viewCaseStudy")}
+          {audience === "recruiter" ? t("viewCaseStudy") : tp("viewProject")}
           <Icon
             name="arrow-right"
             className="size-4 transition-transform group-hover:translate-x-1"

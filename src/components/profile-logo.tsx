@@ -18,11 +18,11 @@ export function ProfileLogo({ className, priority = false }: ProfileLogoProps) {
       <Image
         src={images.logo}
         alt=""
-        width={1312}
-        height={1750}
+        width={1640}
+        height={1657}
         className="absolute left-1/2 top-0 h-auto w-[230%] max-w-none -translate-x-[calc(50%+2px)] object-cover object-top"
         sizes="256px"
-        quality={95}
+        quality={100}
         priority={priority}
       />
     </span>

@@ -5,16 +5,33 @@ import { Card } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icon";
 import { LinkButton, buttonStyles } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/reveal";
+import { servicePath } from "@/config/paths";
 import { profile, services, tx, txList } from "@/content/site";
 import { cn } from "@/lib/utils";
 
-export async function Services({ locale }: { locale: string }) {
+export async function Services({
+  locale,
+  eyebrow,
+  title,
+  subtitle,
+  id = "services",
+}: {
+  locale: string;
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  id?: string;
+}) {
   const t = await getTranslations({ locale, namespace: "Services" });
   const tc = await getTranslations({ locale, namespace: "Common" });
 
   return (
-    <Section id="services" containerSize="wide" className="border-t border-line bg-canvas-2">
-      <SectionHeading eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} />
+    <Section id={id} containerSize="wide" className="border-t border-line bg-canvas-2">
+      <SectionHeading
+        eyebrow={eyebrow ?? t("eyebrow")}
+        title={title ?? t("title")}
+        subtitle={subtitle ?? t("subtitle")}
+      />
 
       <AnimatedGroup
         className="mt-14 grid gap-6 lg:grid-cols-2"
@@ -67,7 +84,7 @@ export async function Services({ locale }: { locale: string }) {
               </ul>
 
               <div className="mt-auto flex flex-col gap-3 pt-2 sm:flex-row">
-                <LinkButton href={`/services/${service.slug}`} className="flex-1">
+                <LinkButton href={servicePath(service.slug)} className="flex-1">
                   {tc("learnMore")}
                   <Icon
                     name="arrow-right"

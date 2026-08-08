@@ -58,13 +58,13 @@ export const profile = {
   url: "https://example.com",
 
   headline: {
-    en: "I build web products that businesses actually run on.",
-    es: "Construyo productos web sobre los que los negocios realmente funcionan.",
+    en: "Full-stack engineer who ships web products from empty repo to production.",
+    es: "Ingeniero full-stack que lleva productos web del repo vacío a producción.",
   },
 
   summary: {
-    en: "Full-stack developer with over 4 years of experience taking web applications from an empty repository to production. I design the architecture, write the frontend and the backend, ship it, and then automate the manual work around it with AI.",
-    es: "Desarrollador full-stack con más de 4 años de experiencia llevando aplicaciones web desde un repositorio vacío hasta producción. Diseño la arquitectura, escribo el frontend y el backend, lo lanzo y después automatizo con IA el trabajo manual que lo rodea.",
+    en: "4+ years owning TypeScript / React / Next.js apps end to end: architecture, UI, APIs, data and deploy. Comfortable in product teams — I ship features that hold up in production, not demos.",
+    es: "Más de 4 años asumiendo apps TypeScript / React / Next.js de punta a punta: arquitectura, UI, APIs, datos y despliegue. Cómodo en equipos de producto: entrego features que aguantan en producción, no demos.",
   },
 
   socials: socialLinks,
@@ -409,6 +409,16 @@ export const projectCategories = [
 
 export type ProjectCategory = (typeof projectCategories)[number]["id"];
 
+/**
+ * How the project was commissioned, so visitors can tell client work
+ * (and its price) apart from personal or altruistic builds.
+ */
+export type ProjectEngagement =
+  | { kind: "client"; price?: string }
+  | { kind: "altruistic" }
+  | { kind: "personal" }
+  | { kind: "interview" };
+
 export type Project = {
   slug: string;
   name: string;
@@ -417,6 +427,7 @@ export type Project = {
   accent: string;
   year: string;
   featured: boolean;
+  engagement: ProjectEngagement;
   tagline: Localized;
   role: Localized;
   timeline: Localized;
@@ -441,23 +452,24 @@ export const projects: Project[] = [
     accent: "from-sky-400/25 via-brand-500/10 to-transparent",
     year: "2026",
     featured: true,
+    engagement: { kind: "client", price: "480€" },
     tagline: {
-      en: "A custom yoga studio website with five inner pages plus a landing, and an admin panel to edit copy, images and colours without touching code.",
-      es: "Una web a medida para un estudio de yoga con cinco páginas interiores más la landing, y un panel de administración para editar textos, imágenes y colores sin tocar código.",
+      en: "A custom yoga studio site with landing + five pages, and an admin panel to show/hide and reorder sections, edit every text including titles, and tweak colours and typography.",
+      es: "Web a medida para un estudio de yoga con landing + cinco páginas, y un panel de administración para mostrar/ocultar y reordenar secciones, editar todos los textos (incluidos títulos) y ajustar colores y tipografía.",
     },
     role: { en: "Full-stack developer, direct client project", es: "Desarrollador full-stack, proyecto directo de cliente" },
     timeline: { en: "Client project", es: "Proyecto de cliente" },
     challenge: {
-      en: "The studio needed a fast, fully branded multi-page site — classes, schedule, about, pricing and contact — without the weight and lock-in of WordPress, Wix or similar builders. Content and look had to stay editable by the owner after launch.",
-      es: "El estudio necesitaba una web multipágina rápida y con marca propia — clases, horario, sobre mí, precios y contacto — sin el peso ni el encierro de WordPress, Wix o constructores similares. El contenido y la apariencia tenían que seguir siendo editables por la dueña después del lanzamiento.",
+      en: "The studio needed a fast, fully branded multi-page site — classes, schedule, about, pricing and contact — without the weight and lock-in of WordPress, Wix or similar builders. Content, layout and look had to stay editable by the owner after launch.",
+      es: "El estudio necesitaba una web multipágina rápida y con marca propia — clases, horario, sobre mí, precios y contacto — sin el peso ni el encierro de WordPress, Wix o constructores similares. El contenido, la estructura y la apariencia tenían que seguir siendo editables por la dueña después del lanzamiento.",
     },
     approach: {
-      en: "I built the site in native code end to end: a public marketing surface with a landing page and five inner pages, backed by a lightweight admin where texts, images and colour tokens can be changed without redeploying a theme. No page builder, no plugin stack — just a fast app the client owns and can restyle as the brand evolves.",
-      es: "Construí la web en código nativo de punta a punta: una superficie pública de marketing con landing y cinco páginas interiores, respaldada por un panel ligero donde se pueden cambiar textos, imágenes y tokens de color sin redesplegar un tema. Sin page builder ni pila de plugins: solo una app rápida que la cliente posee y puede restilar a medida que evoluciona la marca.",
+      en: "I built the site in native code end to end: a public marketing surface with a landing page and five inner pages, backed by an admin where the owner can show/hide and reorder sections on the landing and inside each page, edit every text including titles, swap images, and change colours and typography — without redeploying a theme. No page builder, no plugin stack.",
+      es: "Construí la web en código nativo de punta a punta: una superficie pública de marketing con landing y cinco páginas interiores, respaldada por un panel donde la dueña puede mostrar/ocultar y reordenar secciones de la landing y de dentro de cada página, editar todos los textos incluidos los títulos, cambiar imágenes y ajustar colores y tipografía — sin redesplegar un tema. Sin page builder ni pila de plugins.",
     },
     outcome: {
-      en: "A production yoga site that loads fast, matches the brand exactly, and lets the owner update copy, photography and colours from an admin panel — fully customisable without a CMS lock-in.",
-      es: "Una web de yoga en producción que carga rápido, encaja con la marca al detalle y permite a la dueña actualizar textos, fotos y colores desde un panel de administración: 100% personalizable sin quedar atrapada en un CMS.",
+      en: "A production yoga site that loads fast, matches the brand exactly, and lets the owner reshape sections, copy, colours and typography from an admin panel — fully customisable without a CMS lock-in.",
+      es: "Una web de yoga en producción que carga rápido, encaja con la marca al detalle y permite a la dueña reorganizar secciones, textos, colores y tipografía desde un panel de administración: 100% personalizable sin quedar atrapada en un CMS.",
     },
     features: [
       {
@@ -468,17 +480,24 @@ export const projects: Project[] = [
         },
       },
       {
-        title: { en: "Admin content panel", es: "Panel de contenidos" },
+        title: { en: "Show, hide and reorder sections", es: "Mostrar, ocultar y reordenar secciones" },
         body: {
-          en: "Edit texts and swap images from a private admin without opening a code editor.",
-          es: "Edita textos y cambia imágenes desde un admin privado sin abrir el editor de código.",
+          en: "Toggle and rearrange landing sections and the sections inside each inner page from the admin.",
+          es: "Activa, oculta y reordena las secciones de la landing y las de dentro de cada página desde el admin.",
         },
       },
       {
-        title: { en: "Brand colour control", es: "Control de colores de marca" },
+        title: { en: "Full text editing", es: "Edición total de textos" },
         body: {
-          en: "Colours and visual tokens adjustable so the look can evolve with the studio.",
-          es: "Colores y tokens visuales ajustables para que la apariencia evolucione con el estudio.",
+          en: "Change every copy block, including titles, without opening a code editor.",
+          es: "Modifica todos los textos, incluidos los títulos, sin abrir el editor de código.",
+        },
+      },
+      {
+        title: { en: "Colours and typography", es: "Colores y tipografía" },
+        body: {
+          en: "Brand colours and type styles adjustable so the look can evolve with the studio.",
+          es: "Colores de marca y tipografía ajustables para que la apariencia evolucione con el estudio.",
         },
       },
       {
@@ -506,6 +525,7 @@ export const projects: Project[] = [
     accent: "from-brand-400/25 via-brand-600/10 to-transparent",
     year: "2026",
     featured: true,
+    engagement: { kind: "client" },
     tagline: {
       en: "Custom dynamic web app for a Barcelona dance academy. Responsive, fast, and built with solid SEO.",
       es: "Aplicación web dinámica hecha a medida para una academia de baile de Barcelona. Responsive, rápida y con buen SEO.",
@@ -571,6 +591,7 @@ export const projects: Project[] = [
     accent: "from-accent-500/25 via-brand-500/10 to-transparent",
     year: "2026",
     featured: true,
+    engagement: { kind: "personal" },
     tagline: {
       en: "An offline-first music app for social dancers, built to work in venues with no signal.",
       es: "Una app de música offline-first para bailarines sociales, hecha para funcionar en locales sin cobertura.",
@@ -625,6 +646,7 @@ export const projects: Project[] = [
       { value: "98", label: { en: "Lighthouse PWA score", es: "Puntuación PWA de Lighthouse" } },
     ],
     stack: ["Next.js", "TypeScript", "Service Workers", "IndexedDB", "Cache API", "Workbox"],
+    image: "/projects/salsa_hits.png",
     liveUrl: "https://salsa-instruments.vercel.app/",
   },
   {
@@ -635,6 +657,7 @@ export const projects: Project[] = [
     accent: "from-brand-500/25 via-brand-600/10 to-transparent",
     year: "2025",
     featured: true,
+    engagement: { kind: "personal" },
     tagline: {
       en: "Gamified language-learning web app with ranking, daily streak, badges, a gem shop, real chat-style conversations, plus conjugations, verbs and more.",
       es: "Web app de aprendizaje de idiomas gamificada con ranking, daily streak, badges, tienda de gemas, aprendizaje con conversaciones reales estilo chat de WhatsApp, aprendizaje de conjugaciones, verbos, etc.",
@@ -699,6 +722,7 @@ export const projects: Project[] = [
     accent: "from-emerald-400/20 via-brand-500/10 to-transparent",
     year: "2025",
     featured: true,
+    engagement: { kind: "personal" },
     tagline: {
       en: "A private net worth tracker that turns scattered accounts into one honest number over time.",
       es: "Un registro privado de patrimonio que convierte cuentas dispersas en un único número honesto a lo largo del tiempo.",
@@ -753,71 +777,8 @@ export const projects: Project[] = [
       { value: "Local", label: { en: "Data stays private", es: "Los datos siguen privados" } },
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle", "Recharts", "Tailwind CSS"],
+    image: "/projects/my-networth-app.png",
     liveUrl: "https://net-worth-app-antoni-bassols-lopezs-projects.vercel.app/",
-  },
-  {
-    slug: "bingo-live",
-    name: "Bingo Live",
-    category: "realtime",
-    icon: "grid",
-    accent: "from-brand-500/30 via-accent-500/15 to-transparent",
-    year: "2022",
-    featured: true,
-    tagline: {
-      en: "Open 2 tabs with this app and you will have 2 players (as if a friend were playing from their house and you from yours!). Click start and both tabs update in realtime. Same when you call a ball: if it matches either board, it updates live until one of you gets bingo.",
-      es: "Abre 2 pestañas con esta app y verás que tendrás 2 jugadores (como si tu amigo estuviera jugando desde su casa y tú desde la tuya!) y verás cómo al hacer click en empezar ambas pestañas se actualizan en tiempo real. Lo mismo al lanzar una bola: si coincide con el tablero de alguno de los 2, se actualiza en tiempo real, hasta que uno de los 2 haga bingo.",
-    },
-    role: { en: "Sole developer", es: "Desarrollador único" },
-    timeline: { en: "Personal project", es: "Proyecto personal" },
-    challenge: {
-      en: "Bingo only works when every player sees the same ball at the same moment. A refresh-based UI lags, desyncs cards and ruins the room the second someone joins late or drops offline mid-round.",
-      es: "El bingo solo funciona si todos ven la misma bola en el mismo instante. Una UI a base de refrescos se desfasa, desincroniza cartones y rompe la sala en cuanto alguien entra tarde o se cae a mitad de ronda.",
-    },
-    approach: {
-      en: "I built a lobby-to-game flow on a realtime WebSocket channel: players join a room, the host starts the round, and every call is broadcast so cards mark themselves and win conditions are checked on the server. Late joiners catch up from room state instead of guessing what they missed.",
-      es: "Monté el flujo de lobby a partida sobre un canal WebSocket en tiempo real: los jugadores entran a una sala, el anfitrión arranca la ronda y cada cantada se emite para que los cartones se marquen solos y las condiciones de victoria se validen en el servidor. Quien entra tarde recupera el estado de la sala en lugar de adivinar lo que se perdió.",
-    },
-    outcome: {
-      en: "A playable live bingo room you can open on any device: share the link, fill the lobby and run a round without page refreshes or manual sync.",
-      es: "Una sala de bingo en vivo jugable desde cualquier dispositivo: compartes el enlace, llenas el lobby y tiras una ronda sin refrescar ni sincronizar a mano.",
-    },
-    features: [
-      {
-        title: { en: "Realtime lobby", es: "Lobby en tiempo real" },
-        body: {
-          en: "Players appear in the room as they join, ready for the host to start the game.",
-          es: "Los jugadores aparecen en la sala al unirse, listos para que el anfitrión arranque la partida.",
-        },
-      },
-      {
-        title: { en: "Live ball calls", es: "Cantadas en vivo" },
-        body: {
-          en: "Each number is pushed over WebSockets so every connected card updates together.",
-          es: "Cada número se emite por WebSockets para que todos los cartones conectados se actualicen a la vez.",
-        },
-      },
-      {
-        title: { en: "Shared game state", es: "Estado de partida compartido" },
-        body: {
-          en: "Room state stays authoritative on the server so reconnects and late joins stay consistent.",
-          es: "El estado de la sala queda en el servidor para que reconexiones y entradas tardías sigan siendo coherentes.",
-        },
-      },
-      {
-        title: { en: "Multi-device play", es: "Juego multi-dispositivo" },
-        body: {
-          en: "Open the link on phones or laptops in the same room — no install, no refresh loop.",
-          es: "Abre el enlace en móviles u ordenadores en la misma sala: sin instalar ni bucles de refresco.",
-        },
-      },
-    ],
-    metrics: [
-      { value: "Live", label: { en: "WebSocket sync", es: "Sincronización WebSocket" } },
-      { value: "Multi", label: { en: "Players per room", es: "Jugadores por sala" } },
-      { value: "0", label: { en: "Page refreshes mid-game", es: "Refrescos a mitad de partida" } },
-    ],
-    stack: ["TypeScript", "React", "WebSockets", "Node.js", "Fly.io"],
-    liveUrl: "https://bingogame.fly.dev/",
   },
   {
     slug: "smart-cv-builder",
@@ -827,6 +788,7 @@ export const projects: Project[] = [
     accent: "from-violet-400/20 via-brand-500/10 to-transparent",
     year: "2025",
     featured: true,
+    engagement: { kind: "personal" },
     tagline: {
       en: "An AI CV builder that rewrites your experience against the specific job you are applying for.",
       es: "Un generador de CV con IA que reescribe tu experiencia según la oferta concreta a la que aplicas.",
@@ -881,70 +843,164 @@ export const projects: Project[] = [
       { value: "0", label: { en: "Invented experience", es: "Experiencia inventada" } },
     ],
     stack: ["Next.js", "TypeScript", "OpenAI API", "PostgreSQL", "React PDF", "Zod"],
+    image: "/projects/smart-cv-builder.png",
+    liveUrl: "https://smart-cv-builder-nine.vercel.app/",
   },
   {
     slug: "pdf-book-library",
-    name: "PDF Shelf",
-    category: "productivity",
+    name: "Digital Library",
+    category: "offline",
     icon: "book-open",
     accent: "from-amber-400/20 via-brand-500/10 to-transparent",
     year: "2024",
     featured: true,
+    engagement: { kind: "altruistic" },
     tagline: {
-      en: "A personal library for PDF books with a real reader and reading progress that follows you across devices.",
-      es: "Una biblioteca personal de libros en PDF con lector propio y progreso de lectura que te sigue entre dispositivos.",
+      en: "A digital book library: store your books as PDFs, read them in a light/dark mode fullscreen reader, automatically save progress and resume exactly where you left off — offline on the metro, zoom, copy text, and more.",
+      es: "Biblioteca digital de libros: guarda tus libros en PDF, léelos en un lector con light/dark mode y pantalla completa, guarda el progreso automáticamente y retoma justo donde lo dejaste — offline en el metro, zoom, copiar texto, etc.",
     },
     role: { en: "Sole developer", es: "Desarrollador único" },
     timeline: { en: "2 months", es: "2 meses" },
     challenge: {
-      en: "Technical books and course material end up as PDFs scattered across a downloads folder, a cloud drive and two devices. Nothing tracks where you stopped, so every session starts with scrolling to find your place, and half-read books are invisible.",
-      es: "Los libros técnicos y el material de cursos acaban como PDFs dispersos entre la carpeta de descargas, un disco en la nube y dos dispositivos. Nada registra dónde te quedaste, así que cada sesión empieza buscando la página, y los libros a medias son invisibles.",
+      en: "Books in PDF form end up scattered across downloads and cloud drives. Generic PDF viewers are not libraries: progress gets lost, there is no shelf by topic, and offline reading dies in a metro tunnel. People need a digital library built to read books, not just open files.",
+      es: "Los libros en PDF acaban dispersos entre descargas y nubes. Un visor genérico de PDFs no es una biblioteca: se pierde el progreso, no hay estantería por temas y la lectura offline muere en el metro. Hace falta una biblioteca digital pensada para leer libros, no solo para abrir archivos.",
     },
     approach: {
-      en: "I built a library and a reader rather than just storage. Uploads are parsed for metadata and a cover, then rendered in a custom viewer built on a canvas-based PDF renderer with virtualised pages so a 900-page book scrolls smoothly. Reading position is persisted continuously and reconciled per device, and highlights and notes are anchored to page coordinates so they survive re-opening. The shelf view sorts by what is actually in progress.",
-      es: "Construí una biblioteca y un lector, no solo almacenamiento. Las subidas se analizan para extraer metadatos y portada, y luego se muestran en un visor propio sobre un renderizador de PDF en canvas con páginas virtualizadas, para que un libro de 900 páginas se desplace con fluidez. La posición de lectura se guarda de forma continua y se reconcilia por dispositivo, y los subrayados y notas se anclan a coordenadas de página para que sobrevivan al reabrir. La estantería ordena por lo que está realmente en curso.",
+      en: "I built a mobile-first digital library with a distraction-free book reader: add books as PDFs into category folders, write a short note on why you saved each one, keep continuous reading progress so you reopen on the exact page, go fullscreen, toggle dark or light pages, zoom, and copy text. Offline reading is first-class so a commute without data still works.",
+      es: "Construí una biblioteca digital mobile-first con un lector de libros sin distracciones: añades libros en PDF a carpetas por categoría, escribes por qué los guardaste, el progreso de lectura se mantiene para retomar en la página exacta, modo pantalla completa, páginas dark o light, zoom y copiar texto. La lectura offline es de primer nivel, así que un trayecto sin datos sigue funcionando.",
     },
     outcome: {
-      en: "Reading picks up exactly where it stopped, on whichever device is nearest. Books in progress are visible instead of buried, which is what actually makes them get finished.",
-      es: "La lectura continúa exactamente donde se dejó, en el dispositivo que tengas más cerca. Los libros en curso son visibles en lugar de estar enterrados, que es lo que de verdad hace que se terminen.",
+      en: "Open your library on your phone, pick a book, continue from the last page and keep reading underground — a shelf for books, not a dump of random PDFs.",
+      es: "Abres tu biblioteca en el móvil, eliges un libro, sigues desde la última página y lees bajo tierra: una estantería de libros, no un vertedero de PDFs sueltos.",
     },
     features: [
       {
-        title: { en: "Custom PDF reader", es: "Lector de PDF propio" },
+        title: { en: "Folders by category", es: "Carpetas por categoría" },
         body: {
-          en: "Virtualised page rendering that stays smooth on very long documents.",
-          es: "Renderizado de páginas virtualizado que se mantiene fluido en documentos muy largos.",
+          en: "Organise books into folders so the library stays clear instead of becoming another downloads mess.",
+          es: "Organiza los libros en carpetas para que la biblioteca se mantenga clara y no sea otra carpeta de descargas.",
         },
       },
       {
-        title: { en: "Progress across devices", es: "Progreso entre dispositivos" },
+        title: { en: "Why you saved it", es: "Por qué lo guardaste" },
         body: {
-          en: "Reading position persisted continuously and reconciled per device.",
-          es: "Posición de lectura guardada continuamente y reconciliada por dispositivo.",
+          en: "Add a description per book so you remember what motivated you to put it in the library.",
+          es: "Añade una descripción a cada libro para recordar qué te motivó a meterlo en la biblioteca.",
         },
       },
       {
-        title: { en: "Highlights and notes", es: "Subrayados y notas" },
+        title: { en: "Offline reading", es: "Lectura offline" },
         body: {
-          en: "Annotations anchored to page coordinates so they survive reopening and resizing.",
-          es: "Anotaciones ancladas a coordenadas de página para que sobrevivan al reabrir y redimensionar.",
+          en: "Read your books without signal — built for the metro and any dead-zone commute.",
+          es: "Lee tus libros sin cobertura: pensado para el metro y cualquier trayecto sin señal.",
         },
       },
       {
-        title: { en: "Automatic metadata and covers", es: "Metadatos y portadas automáticos" },
+        title: { en: "Progress that sticks", es: "Progreso que se guarda" },
         body: {
-          en: "Titles, authors and cover thumbnails extracted on upload, with full-text search.",
-          es: "Títulos, autores y miniaturas de portada extraídos al subir, con búsqueda de texto completo.",
+          en: "Every book remembers your page so you reopen exactly where you stopped.",
+          es: "Cada libro recuerda tu página para que retomes exactamente donde lo dejaste.",
+        },
+      },
+      {
+        title: { en: "Fullscreen, no distractions", es: "Pantalla completa, sin distracciones" },
+        body: {
+          en: "The book fills the whole device so nothing else competes for attention.",
+          es: "El libro ocupa todo el dispositivo para que nada más compita por tu atención.",
+        },
+      },
+      {
+        title: { en: "Dark / light, zoom and copy", es: "Dark / light, zoom y copiar" },
+        body: {
+          en: "Toggle dark or light pages, zoom in or out, and copy passages when you need them elsewhere.",
+          es: "Cambia entre página dark o light, amplía o reduce el zoom y copia fragmentos cuando los necesites.",
+        },
+      },
+      {
+        title: { en: "Mobile-first, any device", es: "Mobile-first, cualquier dispositivo" },
+        body: {
+          en: "Responsive across phones, tablets and desktops — designed first for the handset in your pocket.",
+          es: "Responsive en móvil, tablet y escritorio: pensado primero para el teléfono del bolsillo.",
         },
       },
     ],
     metrics: [
-      { value: "900+", label: { en: "Pages scrolled smoothly", es: "Páginas con desplazamiento fluido" } },
-      { value: "Auto", label: { en: "Metadata on upload", es: "Metadatos al subir" } },
-      { value: "Synced", label: { en: "Progress everywhere", es: "Progreso en todos lados" } },
+      { value: "Offline", label: { en: "Reading without signal", es: "Lectura sin cobertura" } },
+      { value: "100%", label: { en: "Fullscreen reader", es: "Lector a pantalla completa" } },
+      { value: "Mobile", label: { en: "First design target", es: "Diseño pensado primero" } },
     ],
     stack: ["Next.js", "TypeScript", "PDF.js", "PostgreSQL", "S3", "Tailwind CSS"],
+    image: "/projects/my-reading-shelf.png",
     liveUrl: "https://my-reading-shelf.vercel.app/",
+  },
+  {
+    slug: "bingo-live",
+    name: "Bingo Live",
+    category: "realtime",
+    icon: "grid",
+    accent: "from-brand-500/30 via-accent-500/15 to-transparent",
+    year: "2022",
+    featured: true,
+    engagement: { kind: "interview" },
+    tagline: {
+      en: "Full-stack take-home: multiplayer bingo in realtime with Express, React and Socket.io. In-memory room state, no MongoDB — built to prove Node and WebSocket mastery in a hiring process.",
+      es: "Prueba técnica full-stack: bingo multijugador en tiempo real con Express, React y Socket.io. Estado de sala en memoria, sin MongoDB — diseñado para demostrar dominio de Node y WebSockets ante un proceso de selección.",
+    },
+    role: {
+      en: "Sole developer — end-to-end realtime system design",
+      es: "Desarrollador único — diseño end-to-end del sistema en tiempo real",
+    },
+    timeline: { en: "Interview take-home", es: "Prueba técnica de entrevista" },
+    challenge: {
+      en: "Deliver a credible realtime product under take-home constraints: multiple clients must share one authoritative match clock, handle late joins and disconnects, and stay correct without a database or a heavy REST surface. Polling would break the sync contract; the architecture had to show intentional Socket.io design.",
+      es: "Entregar un producto realtime creíble bajo restricciones de prueba técnica: varios clientes deben compartir un reloj de partida autoritativo, gestionar entradas tardías y desconexiones, y mantenerse correctos sin base de datos ni una API REST pesada. El polling rompería el contrato de sync; la arquitectura tenía que demostrar diseño deliberado con Socket.io.",
+    },
+    approach: {
+      en: "I co-located Express and Socket.io in one Node process: HTTP for the React build and card generation (`/get_board`), sockets for the entire match lifecycle. Socket rooms separate lobby, in-progress and results; the host controls start/end; balls broadcast as events; line/bingo and abandon paths keep the room consistent. In-memory state was an intentional trade-off — right for short shared-link sessions and a clear demo of server-authoritative realtime design.",
+      es: "Coloqué Express y Socket.io en un solo proceso Node: HTTP para el build de React y la generación de cartones (`/get_board`), sockets para todo el ciclo de partida. Rooms de Socket.io separan lobby, partida y results; el host controla start/end; las bolas se emiten como eventos; línea/bingo y abandono mantienen la sala coherente. El estado en memoria fue un trade-off deliberado: correcto para partidas cortas por enlace y una demo clara de diseño realtime con autoridad en servidor.",
+    },
+    outcome: {
+      en: "A production-deployed demo (Render) where a recruiter opens two tabs and immediately sees synchronized lobby → match → results. It shows I can own the realtime path: protocol design, room lifecycle, React UI phases and ops — not just wire up a library.",
+      es: "Una demo en producción (Render) con la que un reclutador abre dos pestañas y ve al instante lobby → partida → results sincronizados. Demuestra que puedo llevar el camino realtime de punta a punta: diseño de protocolo, ciclo de sala, fases de UI en React y ops — no solo enchufar una librería.",
+    },
+    features: [
+      {
+        title: { en: "Server-authoritative realtime", es: "Realtime con autoridad en servidor" },
+        body: {
+          en: "Match status and the shared drum live on the Node process; clients render phases from socket game state, not from ad-hoc HTTP polling.",
+          es: "El estado de partida y el bombo compartido viven en el proceso Node; los clientes renderizan fases desde el estado de juego por socket, no con polling HTTP improvisado.",
+        },
+      },
+      {
+        title: { en: "Socket.io room model", es: "Modelo de rooms con Socket.io" },
+        body: {
+          en: "Isolated lobby / playing / results rooms, host lifecycle, late-join rejection and mid-game abandon without collapsing the match.",
+          es: "Rooms aisladas de lobby / partida / results, ciclo de host, rechazo de late join y abandono a mitad sin tumbar la partida.",
+        },
+      },
+      {
+        title: { en: "Lean full-stack deploy", es: "Deploy full-stack lean" },
+        body: {
+          en: "One service ships API, sockets and SPA; Webpack build served by Express. No MongoDB where it would not add value.",
+          es: "Un solo servicio entrega API, sockets y SPA; build de Webpack servido por Express. Sin MongoDB donde no aporta valor.",
+        },
+      },
+      {
+        title: { en: "Recruiter-ready demo path", es: "Demo lista para reclutador" },
+        body: {
+          en: "Share one URL, open two tabs: two players, live ball sync and win flow — technical depth visible in under a minute.",
+          es: "Un enlace, dos pestañas: dos jugadores, sync de bolas en vivo y flujo de victoria — profundidad técnica visible en menos de un minuto.",
+        },
+      },
+    ],
+    metrics: [
+      { value: "0", label: { en: "DB dependency for match state", es: "Dependencia de DB para el estado" } },
+      { value: "1", label: { en: "Process: HTTP + sockets + SPA", es: "Proceso: HTTP + sockets + SPA" } },
+      { value: "Socket.io", label: { en: "Realtime transport", es: "Transporte en tiempo real" } },
+    ],
+    stack: ["Node.js", "Express", "Socket.io", "React", "Webpack", "Render"],
+    image: "/projects/bingo-live.png",
+    liveUrl: "https://bingo-live-yx4r.onrender.com/",
   },
 ];
 
@@ -985,31 +1041,31 @@ export const services: Service[] = [
     icon: "code",
     name: { en: "Web Development", es: "Desarrollo Web" },
     tagline: {
-      en: "Websites and web apps that load fast, rank well and turn visitors into customers.",
-      es: "Webs y aplicaciones web que cargan rápido, posicionan bien y convierten visitas en clientes.",
+      en: "A clear website that loads fast on phones, looks trustworthy, and makes it easy for people to contact you.",
+      es: "Una web clara que carga rápido en el móvil, transmite confianza y facilita que la gente te contacte.",
     },
     summary: {
-      en: "I design and build the site your business deserves: fast, accessible, easy to edit and built on a stack you will not need to throw away in a year. Fixed price and fast delivery.",
-      es: "Diseño y construyo la web que tu negocio merece: rápida, accesible, fácil de editar y sobre un stack que no tendrás que tirar en un año. Precio fijo y entrega rápida.",
+      en: "I build sites for business owners who are not technical: fixed price, plain language, and content you can update yourself when something changes.",
+      es: "Hago webs para dueños de negocio que no son técnicos: precio fijo, lenguaje sencillo y contenido que puedes actualizar tú cuando algo cambie.",
     },
     teaser: {
-      en: "From a single high-converting landing page to a full custom web application. Available directly or through my Fiverr profile.",
-      es: "Desde una landing page que convierte hasta una aplicación web completa a medida. Disponible directamente o a través de mi perfil de Fiverr.",
+      en: "From a simple one-page site to a full multi-page business website. Book directly or through Fiverr.",
+      es: "Desde una web de una sola página hasta una web de negocio completa. Reserva directa o por Fiverr.",
     },
     outcomes: {
       en: [
-        "A site that scores in the green on Core Web Vitals, not just on your laptop",
-        "Copy and structure organised around the action you want visitors to take",
-        "Technical SEO, metadata and structured data configured from day one",
-        "Accessible to keyboard and screen reader users, tested rather than assumed",
-        "Content you can update yourself without calling a developer",
+        "Built for academies and studios: schedule, classes and contact easy to find",
+        "Loads quickly on phones — where students usually look you up",
+        "Clear structure so Google and new students can find you",
+        "Booking or contact obvious from the first screen",
+        "Texts and photos you can change without calling a developer",
       ],
       es: [
-        "Una web en verde en Core Web Vitals, y no solo en tu portátil",
-        "Textos y estructura organizados en torno a la acción que quieres que haga el visitante",
-        "SEO técnico, metadatos y datos estructurados configurados desde el primer día",
-        "Accesible para teclado y lectores de pantalla, probado y no supuesto",
-        "Contenido que puedes actualizar tú sin llamar a un desarrollador",
+        "Pensada para academias y estudios: horario, clases y contacto fáciles de encontrar",
+        "Carga rápido en el móvil — donde suelen buscarte los alumnos",
+        "Estructura clara para que Google y nuevos alumnos te encuentren",
+        "Reserva o contacto obvio desde la primera pantalla",
+        "Textos y fotos que puedes cambiar sin llamar a un programador",
       ],
     },
     packages: [
@@ -1023,18 +1079,18 @@ export const services: Service[] = [
         },
         features: {
           en: [
-            "Single responsive page, custom design",
-            "Contact form with email delivery",
-            "Core Web Vitals and on-page SEO",
-            "Analytics installed and verified",
-            "Deployed on your domain",
+            "One custom page that looks great on phones",
+            "Contact form that lands in your email",
+            "Set up so Google can find the page",
+            "Basic visitor stats installed",
+            "Live on your own domain",
           ],
           es: [
-            "Página única responsive, diseño a medida",
-            "Formulario de contacto con envío por email",
-            "Core Web Vitals y SEO on-page",
-            "Analítica instalada y verificada",
-            "Desplegada en tu dominio",
+            "Una página a medida que se ve bien en el móvil",
+            "Formulario de contacto que llega a tu email",
+            "Preparada para que Google la encuentre",
+            "Estadísticas básicas de visitas",
+            "Publicada en tu propio dominio",
           ],
         },
       },
@@ -1049,18 +1105,18 @@ export const services: Service[] = [
         features: {
           en: [
             "Up to 8 custom pages",
-            "CMS so you can edit content yourself",
+            "Simple admin so you can edit texts and photos",
             "Blog or portfolio section",
             "Multilingual setup available",
-            "Technical SEO and structured data",
+            "Clear structure for Google (SEO)",
             "30 days of post-launch support",
           ],
           es: [
             "Hasta 8 páginas a medida",
-            "CMS para que edites el contenido tú",
+            "Admin sencillo para editar textos y fotos",
             "Sección de blog o portfolio",
             "Configuración multiidioma disponible",
-            "SEO técnico y datos estructurados",
+            "Estructura clara para Google (SEO)",
             "30 días de soporte tras el lanzamiento",
           ],
         },
@@ -1173,8 +1229,8 @@ export const services: Service[] = [
     icon: "bot",
     name: { en: "AI Business Automation", es: "Automatización de Negocio con IA" },
     tagline: {
-      en: "I find the manual work quietly draining your margin, and replace it with automation that pays for itself.",
-      es: "Encuentro el trabajo manual que consume tu margen en silencio y lo sustituyo por automatización que se paga sola.",
+      en: "WhatsApp bots, booking reminders and AI that take admin off your plate — automation that pays for itself.",
+      es: "Bots de WhatsApp, recordatorios de reserva e IA que te quitan el admin de encima — automatización que se paga sola.",
     },
     summary: {
       en: "Most companies do not have a technology problem, they have a repetition problem. Quotes retyped into three systems, invoices reconciled by hand, reports rebuilt every Monday. I map where those hours go, put a number on them, and build the automation that gives them back — commonly reaching six figures of annual saving.",
@@ -1186,18 +1242,18 @@ export const services: Service[] = [
     },
     outcomes: {
       en: [
-        "A costed map of every manual process, ranked by what it is worth to remove",
-        "Automation running in your existing tools rather than a new platform to learn",
+        "Chatbots and WhatsApp flows that answer students or clients without you typing every reply",
+        "Reminders and follow-ups that run on their own (bookings, payments, no-shows)",
+        "Automation in the tools you already use — not another platform to learn",
         "Documents, emails and data entry handled without a person in the loop",
-        "Reporting that builds itself instead of consuming a morning each week",
-        "A measurable before-and-after, so the saving is proven and not claimed",
+        "A clear before-and-after, so the time (and money) saved is proven",
       ],
       es: [
-        "Un mapa con coste de cada proceso manual, ordenado por lo que vale eliminarlo",
-        "Automatización funcionando en tus herramientas actuales, no una plataforma nueva que aprender",
-        "Documentos, emails y entrada de datos gestionados sin una persona en medio",
-        "Informes que se construyen solos en lugar de consumir una mañana cada semana",
-        "Un antes y después medible, para que el ahorro esté demostrado y no prometido",
+        "Chatbots y flujos de WhatsApp que responden a alumnos o clientes sin que escribas cada mensaje",
+        "Recordatorios y seguimientos que van solos (reservas, pagos, ausencias)",
+        "Automatización en las herramientas que ya usas — no otra plataforma que aprender",
+        "Documentos, emails y entrada de datos sin una persona en medio",
+        "Un antes y después claro, para que el tiempo (y el dinero) ahorrado esté demostrado",
       ],
     },
     packages: [

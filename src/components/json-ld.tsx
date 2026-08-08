@@ -1,3 +1,4 @@
+import { servicePath } from "@/config/paths";
 import { profile, services, tx } from "@/content/site";
 import { absoluteUrl, siteUrl } from "@/lib/seo";
 
@@ -48,7 +49,7 @@ export function professionalServiceSchema(locale: string) {
           "@type": "Service",
           name: tx(service.name, locale),
           description: tx(service.summary, locale),
-          url: absoluteUrl(locale, `/services/${service.slug}`),
+          url: absoluteUrl(locale, servicePath(service.slug)),
         },
       })),
     },

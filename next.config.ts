@@ -4,6 +4,32 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [],
+    // Allow sharper hero/portrait qualities (default allowlist is only [75]).
+    qualities: [75, 95, 100],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/:locale(en|es)/services/web-development",
+        destination: "/:locale/web",
+        permanent: true,
+      },
+      {
+        source: "/services/web-development",
+        destination: "/web",
+        permanent: true,
+      },
+      {
+        source: "/:locale(en|es)/services/ai-automation",
+        destination: "/:locale/ai",
+        permanent: true,
+      },
+      {
+        source: "/services/ai-automation",
+        destination: "/ai",
+        permanent: true,
+      },
+    ];
   },
 };
 

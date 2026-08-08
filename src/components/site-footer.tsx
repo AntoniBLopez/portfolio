@@ -17,8 +17,8 @@ export async function SiteFooter({ locale }: { locale: string }) {
   ];
 
   const serviceLinks = [
-    { href: "/services/web-development", label: tn("services_web") },
-    { href: "/services/ai-automation", label: tn("services_ai") },
+    { href: "/web", label: tn("services_web") },
+    { href: "/ai", label: tn("services_ai") },
   ];
 
   return (

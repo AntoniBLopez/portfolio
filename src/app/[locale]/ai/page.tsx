@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { AudienceBeacon } from "@/components/audience-beacon";
+import { AudienceProjects } from "@/components/sections/audience-projects";
 import { ServiceHero } from "@/components/service/service-hero";
 import { ServiceProcess } from "@/components/service/service-process";
 import { ServicePackages } from "@/components/service/service-packages";
@@ -8,10 +10,11 @@ import { ServiceFaq } from "@/components/service/service-faq";
 import { RoiPanel } from "@/components/service/roi-panel";
 import { Contact } from "@/components/sections/contact";
 import { JsonLd, breadcrumbSchema } from "@/components/json-ld";
+import { paths } from "@/config/paths";
 import { getService, profile } from "@/content/site";
 import { buildMetadata } from "@/lib/seo";
 
-const PATH = "/services/ai-automation";
+const PATH = paths.aiLanding;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -33,7 +36,7 @@ export async function generateMetadata({
   });
 }
 
-export default async function AiAutomationPage({
+export default async function AiLandingPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -49,6 +52,7 @@ export default async function AiAutomationPage({
 
   return (
     <>
+      <AudienceBeacon audience="ai" />
       <ServiceHero
         service={service}
         locale={locale}
@@ -57,6 +61,8 @@ export default async function AiAutomationPage({
       />
 
       <RoiPanel locale={locale} />
+
+      <AudienceProjects locale={locale} audience="ai" />
 
       <ServiceProcess service={service} locale={locale} title={t("processTitle")} />
 
@@ -73,7 +79,6 @@ export default async function AiAutomationPage({
 
       <JsonLd
         data={breadcrumbSchema(locale, [
-          { name: tn("services"), path: "/#services" },
           { name: tn("services_ai"), path: PATH },
         ])}
       />

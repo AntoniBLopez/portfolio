@@ -1,18 +1,18 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { Badge } from "@/components/ui/badge";
 import { buttonStyles } from "@/components/ui/button";
 import { GradientMesh } from "@/components/gradient-mesh";
-import { ProfileLogo } from "@/components/profile-logo";
 import { Reveal } from "@/components/ui/reveal";
+import { images } from "@/config/images";
 import { getService, heroStats, profile, tx, txList } from "@/content/site";
 
 export async function WebLandingHero({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "WebLanding" });
   const th = await getTranslations({ locale, namespace: "Hero" });
   const ts = await getTranslations({ locale, namespace: "Services" });
-  const tc = await getTranslations({ locale, namespace: "Common" });
   const service = getService("web-development");
   const outcomes = txList(service.outcomes, locale);
 
@@ -21,7 +21,7 @@ export async function WebLandingHero({ locale }: { locale: string }) {
       <GradientMesh />
 
       <Container size="wide" className="relative">
-        <div className="grid gap-14 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_minmax(0,24rem)] lg:gap-16 xl:grid-cols-[1.15fr_minmax(0,28rem)]">
           <div className="flex flex-col items-start gap-7">
             <Reveal>
               <Badge variant="brand" className="px-3 py-1.5 text-sm">
@@ -32,7 +32,17 @@ export async function WebLandingHero({ locale }: { locale: string }) {
 
             <Reveal delay={0.05} className="max-w-3xl">
               <div className="mb-5 flex items-center gap-3">
-                <ProfileLogo priority className="size-12 rounded-2xl sm:size-14" />
+                <span className="relative size-12 shrink-0 overflow-hidden rounded-2xl ring-1 ring-brand-400/35 shadow-lg shadow-brand-950/30 sm:size-14">
+                  <Image
+                    src={images.headshot}
+                    alt=""
+                    fill
+                    className="object-cover object-[center_18%]"
+                    sizes="112px"
+                    quality={100}
+                    priority
+                  />
+                </span>
                 <div className="flex flex-col gap-0.5">
                   <p className="text-base font-semibold tracking-tight text-ink sm:text-lg">
                     {profile.name}
@@ -68,14 +78,12 @@ export async function WebLandingHero({ locale }: { locale: string }) {
                     className="size-4 transition-transform group-hover:translate-x-0.5"
                   />
                 </a>
-                <a
-                  href={profile.fiverrUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={buttonStyles({ variant: "secondary", size: "lg" })}
-                >
-                  {tc("orderOnFiverr")}
-                  <Icon name="arrow-up-right" className="size-4" />
+                <a href="#examples" className={buttonStyles({ variant: "secondary", size: "lg" })}>
+                  {t("secondaryCta")}
+                  <Icon
+                    name="arrow-right"
+                    className="size-4 transition-transform group-hover:translate-x-0.5"
+                  />
                 </a>
               </div>
             </Reveal>
@@ -103,26 +111,47 @@ export async function WebLandingHero({ locale }: { locale: string }) {
             </Reveal>
           </div>
 
-          <Reveal delay={0.2}>
-            <div className="rounded-2xl bg-panel/70 p-7 ring-1 ring-line backdrop-blur-md sm:p-8">
-              <h2 className="text-xs font-semibold tracking-[0.18em] text-ink-3 uppercase">
-                {ts("deliverablesLabel")}
-              </h2>
-              <ul className="mt-6 flex flex-col gap-4">
-                {outcomes.map((outcome) => (
-                  <li key={outcome} className="flex items-start gap-3 text-sm text-ink-2">
-                    <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-brand-500/15 text-brand">
-                      <Icon name="check" className="size-3" />
-                    </span>
-                    {outcome}
-                  </li>
-                ))}
-              </ul>
+          <div className="mx-auto w-full max-w-[22rem] lg:max-w-none">
+            <div className="relative aspect-4/5 w-full">
+              <Image
+                src={images.headshot}
+                alt={t("photoAlt", { name: profile.name })}
+                fill
+                className="object-cover object-[center_18%]"
+                sizes="(max-width: 1024px) 90vw, 560px"
+                quality={100}
+                priority
+              />
             </div>
-          </Reveal>
+            <Reveal delay={0.12}>
+              <p className="mt-4 text-center text-sm text-ink-2">
+                <span className="font-medium text-ink">{profile.name}</span>
+                <span className="text-ink-3"> — </span>
+                {t("photoCaption")}
+              </p>
+            </Reveal>
+          </div>
         </div>
 
-        <dl className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:mt-20 sm:grid-cols-3">
+        <Reveal delay={0.18}>
+          <div className="mt-14 rounded-2xl bg-panel/70 p-7 ring-1 ring-line backdrop-blur-md sm:mt-16 sm:p-8">
+            <h2 className="text-xs font-semibold tracking-[0.18em] text-ink-3 uppercase">
+              {ts("deliverablesLabel")}
+            </h2>
+            <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {outcomes.map((outcome) => (
+                <li key={outcome} className="flex items-start gap-3 text-sm text-ink-2">
+                  <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-brand-500/15 text-brand">
+                    <Icon name="check" className="size-3" />
+                  </span>
+                  {outcome}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+
+        <dl className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:grid-cols-3">
           {heroStats.map((stat) => (
             <div key={stat.labelKey} className="bg-panel px-6 py-7">
               <dt className="text-sm text-ink-3">{th(stat.labelKey)}</dt>
