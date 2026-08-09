@@ -47,8 +47,10 @@ export const profile = {
   email: contact.email,
   phone: contact.phone,
   whatsappUrl,
-  // TODO: replace with your real booking URL.
-  calendarUrl: "https://cal.com/your-handle/intro",
+  /** Short intro call — main “Book a call” CTA across the site. */
+  calendarUrl: "https://cal.com/antonidev/15min",
+  /** Longer call for AI audit / discovery. */
+  calendarUrlLong: "https://cal.com/antonidev/30min",
   /** Re-exported from `@/config/links` so existing `profile.fiverrUrl` call sites keep working. */
   fiverrUrl: links.fiverr,
   resumeUrl: "/cv.pdf",
@@ -525,7 +527,7 @@ export const projects: Project[] = [
     accent: "from-brand-400/25 via-brand-600/10 to-transparent",
     year: "2026",
     featured: true,
-    engagement: { kind: "client" },
+    engagement: { kind: "client", price: "580€" },
     tagline: {
       en: "Custom dynamic web app for a Barcelona dance academy. Responsive, fast, and built with solid SEO.",
       es: "Aplicación web dinámica hecha a medida para una academia de baile de Barcelona. Responsive, rápida y con buen SEO.",
@@ -1032,6 +1034,8 @@ export type Service = {
   outcomes: LocalizedList;
   packages: ServicePackage[];
   process: { icon: IconName; title: Localized; body: Localized }[];
+  /** Optional payment schedule shown under the process steps (e.g. /web). */
+  paymentSteps?: { percent: string; title: Localized; body: Localized }[];
   faq: { question: Localized; answer: Localized }[];
 };
 
@@ -1054,14 +1058,14 @@ export const services: Service[] = [
     },
     outcomes: {
       en: [
-        "Built for academies and studios: schedule, classes and contact easy to find",
+        "Built for academies and studios: schedule, classes and contact easy to find and intuitive",
         "Loads quickly on phones — where students usually look you up",
         "Clear structure so Google and new students can find you",
         "Booking or contact obvious from the first screen",
         "Texts and photos you can change without calling a developer",
       ],
       es: [
-        "Pensada para academias y estudios: horario, clases y contacto fáciles de encontrar",
+        "Pensada para academias y estudios: horario, clases y contacto fáciles de encontrar e intuitivos",
         "Carga rápido en el móvil — donde suelen buscarte los alumnos",
         "Estructura clara para que Google y nuevos alumnos te encuentren",
         "Reserva o contacto obvio desde la primera pantalla",
@@ -1071,7 +1075,7 @@ export const services: Service[] = [
     packages: [
       {
         name: { en: "Landing Page", es: "Landing Page" },
-        price: "450€",
+        price: "380€",
         timeline: { en: "3 - 5 days", es: "3 - 5 días" },
         description: {
           en: "One page, one goal. Ideal for launching a product, a service or a campaign quickly.",
@@ -1096,7 +1100,7 @@ export const services: Service[] = [
       },
       {
         name: { en: "Business Website", es: "Web Corporativa" },
-        price: "1.200€",
+        price: "1.000€",
         timeline: { en: "2 - 3 weeks", es: "2 - 3 semanas" },
         description: {
           en: "A complete multi-page site with editable content, built to be found and to convert.",
@@ -1124,7 +1128,7 @@ export const services: Service[] = [
       },
       {
         name: { en: "Web Application", es: "Aplicación Web" },
-        price: "3.500€",
+        price: "3.000€",
         timeline: { en: "From 6 weeks", es: "Desde 6 semanas" },
         description: {
           en: "Custom software: accounts, dashboards, payments, integrations. Scoped together before anything is written.",
@@ -1155,18 +1159,18 @@ export const services: Service[] = [
     process: [
       {
         icon: "message-square",
-        title: { en: "Scoping call", es: "Llamada de alcance" },
+        title: { en: "First call", es: "Primera llamada" },
         body: {
-          en: "Thirty minutes on what the site has to achieve, who it is for and what already exists. You leave with a fixed price and a date.",
-          es: "Treinta minutos sobre qué debe lograr la web, para quién es y qué existe ya. Te vas con un precio fijo y una fecha.",
+          en: "A short call to understand your idea, who the site is for and what you expect. We check whether you already have a logo, colours and photos — or we start the brand from scratch.",
+          es: "Una llamada corta para entender tu idea, a quién va dirigida la web y qué esperas. Vemos si ya tienes logo, colores y fotos, o si hay que crear la marca de cero.",
         },
       },
       {
         icon: "palette",
-        title: { en: "Design and structure", es: "Diseño y estructura" },
+        title: { en: "Free prototype", es: "Prototipo gratuito" },
         body: {
-          en: "Layout, copy structure and visual direction agreed before a single component is built, so revisions are cheap.",
-          es: "Estructura, textos y dirección visual acordados antes de construir un solo componente, para que las revisiones sean baratas.",
+          en: "You get a free design preview. If you like it, we agree how many pages the site needs, a negotiable final price and the delivery date.",
+          es: "Te preparo un prototipo gratis. Si te gusta, concretamos cuántas páginas necesita la web, un precio final negociable y la fecha de entrega.",
         },
       },
       {
@@ -1179,21 +1183,40 @@ export const services: Service[] = [
       },
       {
         icon: "rocket",
-        title: { en: "Launch and handover", es: "Lanzamiento y traspaso" },
+        title: { en: "Delivery & support", es: "Entrega y soporte" },
         body: {
-          en: "Domain, analytics, search console and a short walkthrough of how to edit your own content. Then support while you settle in.",
-          es: "Dominio, analítica, search console y una guía corta para editar tu propio contenido. Después, soporte mientras te acomodas.",
+          en: "Code in your repo, your own database, SEO and performance tuned before handoff. Then 3 days of free active support for small fixes and questions.",
+          es: "Código en tu repositorio, base de datos tuya, SEO y rendimiento afinados antes de entregar. Luego 3 días de soporte activo gratis para dudas y pequeños ajustes.",
+        },
+      },
+    ],
+    paymentSteps: [
+      {
+        percent: "50%",
+        title: { en: "To start", es: "Al empezar" },
+        body: {
+          en: "When we agree on the prototype, price and delivery date — and you decide to go ahead.",
+          es: "Cuando acordamos el prototipo, el precio y la fecha de entrega — y decides seguir adelante.",
+        },
+      },
+      {
+        percent: "30%",
+        title: { en: "Advanced version", es: "Versión avanzada" },
+        body: {
+          en: "When you can already see clear progress on the staging site.",
+          es: "Cuando ya puedes ver un progreso claro en la URL de pruebas.",
+        },
+      },
+      {
+        percent: "20%",
+        title: { en: "On delivery", es: "A la entrega" },
+        body: {
+          en: "When the project is delivered to your repo and ready.",
+          es: "Cuando el proyecto se entrega en tu repositorio y queda listo.",
         },
       },
     ],
     faq: [
-      {
-        question: { en: "Should I order on Fiverr or contact you directly?", es: "¿Contrato en Fiverr o te escribo directamente?" },
-        answer: {
-          en: "Both reach me and the work is identical. Fiverr is convenient if you want buyer protection and a packaged scope. For larger or ongoing projects, contacting me directly is usually simpler and cheaper.",
-          es: "Ambos llegan a mí y el trabajo es idéntico. Fiverr es cómodo si quieres protección del comprador y un alcance empaquetado. Para proyectos grandes o continuos, escribirme directamente suele ser más simple y económico.",
-        },
-      },
       {
         question: { en: "Do you write the content and source the images?", es: "¿Escribes el contenido y buscas las imágenes?" },
         answer: {
@@ -1204,15 +1227,29 @@ export const services: Service[] = [
       {
         question: { en: "What do you need from me to start?", es: "¿Qué necesitas de mí para empezar?" },
         answer: {
-          en: "A clear idea of the goal, access to your domain, and whatever brand material you already have. If any of that is missing we sort it out in the scoping call.",
-          es: "Una idea clara del objetivo, acceso a tu dominio y el material de marca que ya tengas. Si falta algo, lo resolvemos en la llamada de alcance.",
+          en: "Your idea, who the site is for and what you expect — plus any brand material you already have (logo, colours, photos). If you have none, we plan that in the first call.",
+          es: "Tu idea, a quién va dirigida la web y qué esperas — y el material de marca que ya tengas (logo, colores, fotos). Si no tienes, lo vemos en la primera llamada.",
+        },
+      },
+      {
+        question: { en: "How do payments work?", es: "¿Cómo funcionan los pagos?" },
+        answer: {
+          en: "After you approve the free prototype and we agree price and date: 50% to start, 30% when you can see an advanced version, and 20% on delivery.",
+          es: "Cuando apruebas el prototipo gratis y acordamos precio y fecha: 50% al empezar, 30% cuando puedas ver una versión avanzada y 20% a la entrega.",
         },
       },
       {
         question: { en: "Who owns the code?", es: "¿De quién es el código?" },
         answer: {
-          en: "You do, completely, on final payment. It goes in your repository and deploys to your accounts. There is no lock-in and no licence tied to me.",
-          es: "Tuyo por completo al pago final. Va a tu repositorio y se despliega en tus cuentas. Sin dependencias ni licencias atadas a mí.",
+          en: "You do. On delivery it goes into your repository, with your own database. No lock-in tied to me.",
+          es: "Tuyo. En la entrega va a tu repositorio, con tu propia base de datos. Sin dependencias atadas a mí.",
+        },
+      },
+      {
+        question: { en: "Does the project include ongoing maintenance?", es: "¿El proyecto incluye mantenimiento después?" },
+        answer: {
+          en: "Delivery includes 3 days of free active support for small fixes and questions. Ongoing maintenance after that is optional and quoted separately if you want it.",
+          es: "La entrega incluye 3 días de soporte activo gratis para dudas y pequeños ajustes. El mantenimiento después es opcional y se cotiza aparte si lo quieres.",
         },
       },
       {
@@ -1477,7 +1514,8 @@ export const automationAreas = [
 export const roiExample = {
   teamSize: 15,
   hoursPerPersonPerWeek: 6,
-  hourlyCost: 32,
+  /** Fully loaded €/h — enough for ~six-figure annual saving at 70% automation. */
+  hourlyCost: 40,
   automatedShare: 0.7,
 } as const;
 

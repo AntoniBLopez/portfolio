@@ -21,3 +21,10 @@ export function projectHref(slug: string, audience: Audience = DEFAULT_AUDIENCE)
   if (audience === DEFAULT_AUDIENCE) return pathname;
   return { pathname, query: { [AUDIENCE_QUERY]: audience } };
 }
+
+/** Infer audience from the current route (locale-stripped pathname). */
+export function audienceFromPathname(pathname: string): Audience {
+  if (pathname === "/web" || pathname.startsWith("/web/")) return "web";
+  if (pathname === "/ai" || pathname.startsWith("/ai/")) return "ai";
+  return DEFAULT_AUDIENCE;
+}

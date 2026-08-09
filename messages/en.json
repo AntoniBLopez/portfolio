@@ -2,11 +2,15 @@
   "Common": {
     "skipToContent": "Skip to content",
     "bookCall": "Book a call",
+    "bookCallHere": "Book a call here",
     "viewWork": "View my work",
     "getInTouch": "Get in touch",
     "startProject": "Start a project",
     "learnMore": "Learn more",
     "orderOnFiverr": "Order on Fiverr",
+    "hire": "Contact",
+    "requestInfo": "Ask for more info",
+    "packageWhatsApp": "Hi Antoni! I'm interested in the {package} package and would like more information. When would be a good time to talk?",
     "workWithMeDirectly": "Work with me directly",
     "viewCaseStudy": "Read the case study",
     "viewAllProjects": "View all projects",
@@ -31,6 +35,12 @@
     "services_web": "Web Development",
     "services_ai": "AI Automation",
     "servicesMenuLabel": "What I offer"
+  },
+  "Brand": {
+    "yearsLabel": "years",
+    "roleRecruiter": "Software Engineer · Full-Stack",
+    "roleWeb": "Web developer",
+    "roleAi": "AI & automation"
   },
   "Hero": {
     "availability": "Open to full-time roles and select projects",
@@ -93,7 +103,8 @@
     "webTitle": "Examples for academies and studios",
     "webSubtitle": "Real sites and apps: fast on phones, clear booking or contact, and tools the owner can use without being technical.",
     "aiTitle": "Where process meets product",
-    "aiSubtitle": "Examples of replacing WhatsApp chaos and spreadsheets with systems that save time every week."
+    "aiSubtitle": "Examples of replacing WhatsApp chaos and spreadsheets with systems that save time every week.",
+    "viewAll": "See all projects"
   },
   "Services": {
     "eyebrow": "What I can do for you",
@@ -106,25 +117,28 @@
     "deliverablesLabel": "Deliverables",
     "timelineLabel": "Typical timeline",
     "startingAt": "From",
+    "priceGuide": "Approx. — depends on the project and scope",
     "mostPopular": "Most popular",
     "stepLabel": "Step {number}",
     "packagesTitle": "Pick the scope that fits",
     "processTitle": "From first call to launch",
-    "faqTitle": "Questions before we start"
+    "faqTitle": "Questions before we start",
+    "paymentsLabel": "Payments",
+    "paymentsTitle": "Clear milestones, no surprises",
+    "paymentsSubtitle": "You only pay as the project moves forward."
   },
   "WebLanding": {
-    "yearsLabel": "years",
     "headline": "Websites for dance, yoga and fitness academies — clear, fast on phones, and easy for students to book or contact you.",
     "summary": "Built for studio and academy owners who are not technical: fixed price, plain language, and an admin so you can change texts and photos without calling a developer. Also fits personal brands and small businesses that need the same clarity.",
     "primaryCta": "See packages",
     "secondaryCta": "See real examples",
     "photoAlt": "{name}, web developer",
-    "photoCaption": "a real person you can talk to",
     "crossSellEyebrow": "Not only websites",
     "crossSellTitle": "Two ways to work with me",
     "crossSellSubtitle": "Most people here need a site first. If you also want AI for WhatsApp, bookings, reminders or admin work that eats your week — that path is available too."
   },
   "AiAutomation": {
+    "photoAlt": "{name}, AI and automation",
     "roiEyebrow": "The business case",
     "roiTitle": "Where the savings come from",
     "roiSubtitle": "A typical mid-sized operation loses close to a full working day per employee per week to work that software should be doing.",
@@ -185,7 +199,9 @@
     "validationMessageLong": "Please keep the message under 4000 characters."
   },
   "Footer": {
-    "tagline": "Full-stack development and AI automation for teams that need results, not tickets.",
+    "taglineRecruiter": "Full-stack engineer shipping production web products — and AI automation when the business needs it.",
+    "taglineWeb": "Clear websites for academies and studios: fast on phones, easy to update, fixed price.",
+    "taglineAi": "AI and automation that cut admin work — WhatsApp, bookings, reminders and the processes that eat your week.",
     "navTitle": "Explore",
     "servicesTitle": "Services",
     "connectTitle": "Connect",

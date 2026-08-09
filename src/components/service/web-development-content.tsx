@@ -2,7 +2,8 @@ import { getTranslations } from "next-intl/server";
 import { ServicePackages } from "@/components/service/service-packages";
 import { ServiceProcess } from "@/components/service/service-process";
 import { ServiceFaq } from "@/components/service/service-faq";
-import { getService, profile } from "@/content/site";
+import { whatsappUrlWithText } from "@/config/contact";
+import { getService } from "@/content/site";
 
 /**
  * Body of the web-development offer: packages, process and FAQ.
@@ -19,7 +20,13 @@ export async function WebDevelopmentContent({ locale }: { locale: string }) {
         service={service}
         locale={locale}
         title={t("packagesTitle")}
-        cta={{ label: tc("orderOnFiverr"), href: profile.fiverrUrl, external: true }}
+        approximatePricing
+        cta={{
+          label: tc("requestInfo"),
+          external: true,
+          href: (packageName) =>
+            whatsappUrlWithText(tc("packageWhatsApp", { package: packageName })),
+        }}
       />
 
       <ServiceProcess service={service} locale={locale} title={t("processTitle")} />

@@ -33,14 +33,14 @@ export async function Contact({
           subtitle={t("subtitle")}
         />
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1.35fr_1fr]">
-          <Card className="p-7 sm:p-9">
+        <div className="mt-14 grid min-w-0 gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+          <Card className="min-w-0 p-5 sm:p-7 lg:p-9">
             <h3 className="mb-6 text-lg font-semibold text-ink">{t("formTitle")}</h3>
             <ContactForm defaultProjectType={defaultProjectType} />
           </Card>
 
-          <div className="flex flex-col gap-6">
-            <Card glow className="flex flex-col gap-5 p-7 sm:p-9">
+          <div className="flex min-w-0 flex-col gap-6">
+            <Card glow className="flex min-w-0 flex-col gap-5 p-5 sm:p-7 lg:p-9">
               <div className="flex flex-col gap-2">
                 <h3 className="text-lg font-semibold text-ink">{t("directTitle")}</h3>
                 <p className="text-sm leading-relaxed text-ink-2">{t("directSubtitle")}</p>
@@ -64,7 +64,7 @@ export async function Contact({
               </div>
             </Card>
 
-            <Card className="flex flex-col gap-4 p-7 sm:p-9">
+            <Card className="flex min-w-0 flex-col gap-4 p-5 sm:p-7 lg:p-9">
               <h3 className="text-xs font-semibold tracking-[0.18em] text-ink-3 uppercase">
                 {tc("getInTouch")}
               </h3>

@@ -14,3 +14,8 @@ export const mailto = `mailto:${contact.email}` as const;
 export const whatsappPhone = contact.phone.replace(/\D/g, "");
 
 export const whatsappUrl = `https://wa.me/${whatsappPhone}` as const;
+
+/** WhatsApp deep link with a prefilled message. */
+export function whatsappUrlWithText(text: string) {
+  return `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(text)}`;
+}

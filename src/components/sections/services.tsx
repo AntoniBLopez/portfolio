@@ -91,27 +91,15 @@ export async function Services({
                     className="size-4 transition-transform group-hover:translate-x-0.5"
                   />
                 </LinkButton>
-                {service.slug === "web-development" ? (
-                  <a
-                    href={profile.fiverrUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={buttonStyles({ variant: "secondary", className: "flex-1" })}
-                  >
-                    {tc("orderOnFiverr")}
-                    <Icon name="arrow-up-right" className="size-4" />
-                  </a>
-                ) : (
-                  <a
-                    href={profile.calendarUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={buttonStyles({ variant: "secondary", className: "flex-1" })}
-                  >
-                    {tc("bookCall")}
-                    <Icon name="arrow-up-right" className="size-4" />
-                  </a>
-                )}
+                <a
+                  href={profile.calendarUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={buttonStyles({ variant: "secondary", className: "flex-1" })}
+                >
+                  {tc("bookCallHere")}
+                  <Icon name="arrow-up-right" className="size-4" />
+                </a>
               </div>
             </Card>
           );

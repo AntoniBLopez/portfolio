@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { ProfileLogo } from "@/components/profile-logo";
+import { BrandMark } from "@/components/brand-mark";
+import { FooterTagline } from "@/components/footer-tagline";
 import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { profile } from "@/content/site";
@@ -26,11 +27,8 @@ export async function SiteFooter({ locale }: { locale: string }) {
       <Container size="wide" className="py-14">
         <div className="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2.5">
-              <ProfileLogo />
-              <span className="text-sm font-semibold text-ink">{profile.name}</span>
-            </div>
-            <p className="max-w-xs text-sm leading-relaxed text-ink-2">{t("tagline")}</p>
+            <BrandMark />
+            <FooterTagline className="max-w-xs text-sm leading-relaxed text-ink-2" />
             <a
               href={`mailto:${profile.email}`}
               className="inline-flex w-fit items-center gap-2 text-sm font-medium text-brand hover:underline"

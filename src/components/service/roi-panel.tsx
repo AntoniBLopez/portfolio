@@ -111,7 +111,7 @@ export async function RoiPanel({ locale }: { locale: string }) {
             </p>
           </div>
           <a
-            href={profile.calendarUrl}
+            href={profile.calendarUrlLong}
             target="_blank"
             rel="noopener noreferrer"
             className={buttonStyles({ size: "lg", className: "shrink-0 lg:ml-auto" })}

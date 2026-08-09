@@ -17,7 +17,7 @@ export function Container({
 }: ContainerProps) {
   return (
     <div
-      className={cn("mx-auto w-full px-5 sm:px-8", sizes[size], className)}
+      className={cn("mx-auto w-full min-w-0 px-5 sm:px-8", sizes[size], className)}
       {...props}
     />
   );

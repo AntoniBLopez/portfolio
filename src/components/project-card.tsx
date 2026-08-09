@@ -11,7 +11,13 @@ import { DEFAULT_AUDIENCE, projectHref, type Audience } from "@/lib/audience";
 import { resolveProjectView } from "@/lib/project-view";
 import { cn } from "@/lib/utils";
 
-function ProjectVisual({ project }: { project: Project }) {
+function ProjectVisual({
+  project,
+  engagement,
+}: {
+  project: Project;
+  engagement: string;
+}) {
   return (
     <div className="relative aspect-16/10 overflow-hidden border-b border-line bg-canvas-2">
       {project.image ? (
@@ -33,7 +39,10 @@ function ProjectVisual({ project }: { project: Project }) {
           </div>
         </>
       )}
-      <span className="absolute top-3 right-3 rounded-full bg-canvas/70 px-2.5 py-1 font-mono text-xs text-ink-2 backdrop-blur">
+      <span className="absolute top-3 left-3 rounded-full bg-brand-600 px-2.5 py-1 text-xs font-semibold text-white shadow-md shadow-brand-950/40">
+        {engagement}
+      </span>
+      <span className="absolute top-3 right-3 rounded-full bg-canvas/85 px-2.5 py-1 font-mono text-xs font-medium text-ink ring-1 ring-line backdrop-blur">
         {project.year}
       </span>
     </div>
@@ -58,7 +67,10 @@ export function ProjectCard({
       href={projectHref(project.slug, audience)}
       className="group flex h-full flex-col overflow-hidden rounded-2xl bg-panel ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:ring-line-hi hover:shadow-2xl hover:shadow-brand-950/25"
     >
-      <ProjectVisual project={project} />
+      <ProjectVisual
+        project={project}
+        engagement={engagementLabel(project.engagement, tp)}
+      />
 
       <div className="flex flex-1 flex-col gap-4 p-6">
         <div className="flex flex-col gap-2">
@@ -68,9 +80,6 @@ export function ProjectCard({
               <Badge variant="brand">{tx(category.label, locale)}</Badge>
             )}
           </div>
-          <Badge variant="outline" className="w-fit">
-            {engagementLabel(project.engagement, tp)}
-          </Badge>
           <p className="text-sm leading-relaxed text-ink-2">{tx(view.tagline, locale)}</p>
         </div>
 

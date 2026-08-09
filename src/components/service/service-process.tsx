@@ -15,6 +15,7 @@ export async function ServiceProcess({
   title: string;
 }) {
   const t = await getTranslations({ locale, namespace: "Services" });
+  const paymentSteps = service.paymentSteps;
 
   return (
     <Section id="process" containerSize="wide" className="border-t border-line">
@@ -28,27 +29,62 @@ export async function ServiceProcess({
         {service.process.map((step, index) => (
           <div
             key={step.title.en}
-            className="relative flex h-full flex-col gap-4 rounded-2xl bg-panel p-7 ring-1 ring-line"
+            className="flex h-full flex-col gap-4 rounded-2xl bg-panel p-7 ring-1 ring-line"
           >
-            <span
-              aria-hidden
-              className="absolute top-5 right-6 font-mono text-4xl font-bold text-line-hi"
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <span className="grid size-11 place-items-center rounded-xl bg-brand-500/12 text-brand">
-              <Icon name={step.icon} className="size-5" />
-            </span>
-            <div className="flex flex-col gap-2">
-              <p className="text-xs font-semibold tracking-[0.14em] text-ink-3 uppercase">
-                {t("stepLabel", { number: index + 1 })}
-              </p>
-              <h3 className="text-base font-semibold text-ink">{tx(step.title, locale)}</h3>
+            <div className="flex items-center justify-between gap-4">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-brand-500/12 text-brand">
+                <Icon name={step.icon} className="size-5" />
+              </span>
+              <span
+                aria-hidden
+                className="font-mono text-4xl font-bold leading-none text-line-hi"
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
             </div>
+            <h3 className="text-base font-semibold text-ink">{tx(step.title, locale)}</h3>
             <p className="text-sm leading-relaxed text-ink-2">{tx(step.body, locale)}</p>
           </div>
         ))}
       </AnimatedGroup>
+
+      {paymentSteps && paymentSteps.length > 0 && (
+        <div className="mt-12 rounded-2xl bg-panel p-6 ring-1 ring-line sm:p-8">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.18em] text-brand uppercase">
+                {t("paymentsLabel")}
+              </p>
+              <h3 className="mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+                {t("paymentsTitle")}
+              </h3>
+            </div>
+            <p className="max-w-md text-sm text-ink-2">{t("paymentsSubtitle")}</p>
+          </div>
+
+          <ol className="mt-8 grid gap-4 sm:grid-cols-3">
+            {paymentSteps.map((step, index) => (
+              <li
+                key={step.percent}
+                className="relative flex flex-col gap-3 rounded-xl bg-canvas-2 p-5 ring-1 ring-line"
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="text-3xl font-semibold tracking-tight text-brand sm:text-4xl">
+                    {step.percent}
+                  </span>
+                  <span className="font-mono text-xs text-ink-3">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <h4 className="text-sm font-semibold text-ink">{tx(step.title, locale)}</h4>
+                  <p className="text-sm leading-relaxed text-ink-2">{tx(step.body, locale)}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
     </Section>
   );
 }

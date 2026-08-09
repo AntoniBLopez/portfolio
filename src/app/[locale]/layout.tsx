@@ -85,7 +85,7 @@ export default async function LocaleLayout({
       <head>
         <ThemeScript />
       </head>
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full min-w-0 flex-col overflow-x-clip">
         <NextIntlClientProvider>
           <a
             href="#main"
@@ -94,7 +94,7 @@ export default async function LocaleLayout({
             {t("skipToContent")}
           </a>
           <SiteHeader />
-          <main id="main" className="flex-1">
+          <main id="main" className="min-w-0 flex-1">
             {children}
           </main>
           <SiteFooter locale={locale} />

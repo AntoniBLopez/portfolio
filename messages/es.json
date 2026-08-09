@@ -2,11 +2,15 @@
   "Common": {
     "skipToContent": "Saltar al contenido",
     "bookCall": "Reservar una llamada",
+    "bookCallHere": "Reservar una llamada aquí",
     "viewWork": "Ver mi trabajo",
     "getInTouch": "Hablemos",
     "startProject": "Empezar un proyecto",
     "learnMore": "Saber más",
     "orderOnFiverr": "Contratar en Fiverr",
+    "hire": "Contactar",
+    "requestInfo": "Pedir más info",
+    "packageWhatsApp": "Hola Antoni! Estoy interesado en el paquete de {package} y me gustaría que me dieras más información. ¿Cuándo te va bien hablarlo?",
     "workWithMeDirectly": "Trabajar conmigo directamente",
     "viewCaseStudy": "Leer el caso práctico",
     "viewAllProjects": "Ver todos los proyectos",
@@ -31,6 +35,12 @@
     "services_web": "Desarrollo Web",
     "services_ai": "Automatización con IA",
     "servicesMenuLabel": "Lo que ofrezco"
+  },
+  "Brand": {
+    "yearsLabel": "años",
+    "roleRecruiter": "Ingeniero de Software · Full-Stack",
+    "roleWeb": "Desarrollador web",
+    "roleAi": "IA y automatización"
   },
   "Hero": {
     "availability": "Abierto a roles full-time y proyectos selectos",
@@ -93,7 +103,8 @@
     "webTitle": "Ejemplos para academias y estudios",
     "webSubtitle": "Webs y apps reales: rápidas en el móvil, reserva o contacto claro, y herramientas que el dueño puede usar sin ser técnico.",
     "aiTitle": "Donde el proceso se convierte en producto",
-    "aiSubtitle": "Ejemplos de sustituir el caos de WhatsApp y las hojas de cálculo por sistemas que ahorran tiempo cada semana."
+    "aiSubtitle": "Ejemplos de sustituir el caos de WhatsApp y las hojas de cálculo por sistemas que ahorran tiempo cada semana.",
+    "viewAll": "Ver todos"
   },
   "Services": {
     "eyebrow": "Lo que puedo hacer por ti",
@@ -106,25 +117,28 @@
     "deliverablesLabel": "Entregables",
     "timelineLabel": "Plazo habitual",
     "startingAt": "Desde",
+    "priceGuide": "Aprox. — depende del proyecto y el alcance",
     "mostPopular": "Más elegido",
     "stepLabel": "Paso {number}",
     "packagesTitle": "Elige el alcance que encaja",
     "processTitle": "De la primera llamada al lanzamiento",
-    "faqTitle": "Preguntas antes de empezar"
+    "faqTitle": "Preguntas antes de empezar",
+    "paymentsLabel": "Pagos",
+    "paymentsTitle": "Hitos claros, sin sorpresas",
+    "paymentsSubtitle": "Solo pagas a medida que el proyecto avanza."
   },
   "WebLanding": {
-    "yearsLabel": "años",
     "headline": "Webs para academias de baile, yoga y fitness — claras, rápidas en el móvil y fáciles para que el alumno reserve o te contacte.",
     "summary": "Pensadas para dueños de estudio o academia que no son técnicos: precio fijo, lenguaje sencillo y un admin para cambiar textos y fotos sin llamar a un programador. También encaja en marcas personales y pequeños negocios que necesitan esa misma claridad.",
     "primaryCta": "Ver paquetes",
     "secondaryCta": "Ver ejemplos reales",
     "photoAlt": "{name}, desarrollador web",
-    "photoCaption": "una persona real con la que puedes hablar",
     "crossSellEyebrow": "No solo webs",
     "crossSellTitle": "Dos formas de trabajar conmigo",
     "crossSellSubtitle": "La mayoría llega buscando una web. Si también te interesa la IA para WhatsApp, reservas, recordatorios o el admin que te come la semana — esa vía también está aquí."
   },
   "AiAutomation": {
+    "photoAlt": "{name}, IA y automatización",
     "roiEyebrow": "El caso de negocio",
     "roiTitle": "De dónde sale el ahorro",
     "roiSubtitle": "Una operación mediana pierde cerca de un día laboral por empleado y semana en trabajo que debería hacer el software.",
@@ -185,7 +199,9 @@
     "validationMessageLong": "El mensaje no puede superar los 4000 caracteres."
   },
   "Footer": {
-    "tagline": "Desarrollo full-stack y automatización con IA para equipos que necesitan resultados, no tickets.",
+    "taglineRecruiter": "Ingeniero full-stack que lleva productos web a producción — y automatización con IA cuando el negocio lo necesita.",
+    "taglineWeb": "Webs claras para academias y estudios: rápidas en el móvil, fáciles de actualizar, precio fijo.",
+    "taglineAi": "IA y automatización que quitan trabajo de admin — WhatsApp, reservas, recordatorios y los procesos que te comen la semana.",
     "navTitle": "Explorar",
     "servicesTitle": "Servicios",
     "connectTitle": "Conectar",

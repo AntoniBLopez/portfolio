@@ -13,6 +13,7 @@ export async function WebLandingHero({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "WebLanding" });
   const th = await getTranslations({ locale, namespace: "Hero" });
   const ts = await getTranslations({ locale, namespace: "Services" });
+  const tb = await getTranslations({ locale, namespace: "Brand" });
   const service = getService("web-development");
   const outcomes = txList(service.outcomes, locale);
 
@@ -31,33 +32,6 @@ export async function WebLandingHero({ locale }: { locale: string }) {
             </Reveal>
 
             <Reveal delay={0.05} className="max-w-3xl">
-              <div className="mb-5 flex items-center gap-3">
-                <span className="relative size-12 shrink-0 overflow-hidden rounded-2xl ring-1 ring-brand-400/35 shadow-lg shadow-brand-950/30 sm:size-14">
-                  <Image
-                    src={images.headshot}
-                    alt=""
-                    fill
-                    className="object-cover object-[center_18%]"
-                    sizes="112px"
-                    quality={100}
-                    priority
-                  />
-                </span>
-                <div className="flex flex-col gap-0.5">
-                  <p className="text-base font-semibold tracking-tight text-ink sm:text-lg">
-                    {profile.name}
-                  </p>
-                  <p className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-sm font-medium text-brand">
-                    {tx(profile.role, locale)}
-                    <span aria-hidden className="text-ink-3">
-                      /
-                    </span>
-                    <span className="text-ink-2">
-                      {profile.yearsExperience}+ {t("yearsLabel")}
-                    </span>
-                  </p>
-                </div>
-              </div>
               <h1 className="text-gradient text-4xl font-semibold tracking-tight sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
                 {t("headline")}
               </h1>
@@ -124,11 +98,20 @@ export async function WebLandingHero({ locale }: { locale: string }) {
               />
             </div>
             <Reveal delay={0.12}>
-              <p className="mt-4 text-center text-sm text-ink-2">
-                <span className="font-medium text-ink">{profile.name}</span>
-                <span className="text-ink-3"> — </span>
-                {t("photoCaption")}
-              </p>
+              <div className="mt-4 flex flex-col items-center gap-0.5 text-center">
+                <p className="text-base font-semibold tracking-tight text-ink sm:text-lg">
+                  {profile.name}
+                </p>
+                <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-sm font-medium text-brand">
+                  {tb("roleWeb")}
+                  <span aria-hidden className="text-ink-3">
+                    /
+                  </span>
+                  <span className="text-ink-2">
+                    {profile.yearsExperience}+ {tb("yearsLabel")}
+                  </span>
+                </p>
+              </div>
             </Reveal>
           </div>
         </div>

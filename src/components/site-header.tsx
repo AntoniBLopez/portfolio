@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/locale-switcher";
-import { ProfileLogo } from "@/components/profile-logo";
+import { BrandMark } from "@/components/brand-mark";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Icon } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
@@ -133,25 +133,11 @@ export function SiteHeader() {
       >
         <Container size="wide">
           <div className="flex items-center justify-between gap-4">
-            <Link
-              href="/"
-              className="group flex items-center gap-2.5"
-              aria-label={profile.name}
-              onClick={(event) => {
-                if (!isHome) return;
-                event.preventDefault();
-                window.scrollTo({ top: 0 });
-                setMenuOpen(false);
-              }}
-            >
-              <ProfileLogo
-                priority
-                className="transition-transform group-hover:scale-105"
-              />
-              <span className="hidden text-sm font-semibold tracking-tight text-ink sm:block">
-                {profile.name}
-              </span>
-            </Link>
+            <BrandMark
+              priority
+              className="min-w-0 flex-1 sm:flex-initial"
+              onNavigate={() => setMenuOpen(false)}
+            />
 
             <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
               {navItems.slice(0, 3).map((item) => (
@@ -187,13 +173,13 @@ export function SiteHeader() {
                       <Link
                         key={link.href}
                         href={link.href}
-                        className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-panel-hi"
+                        className="flex items-center gap-3 rounded-xl p-3 transition-colors hover:bg-panel-hi"
                         onClick={() => setServicesOpen(false)}
                       >
-                        <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-lg bg-brand-500/12 text-brand">
+                        <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-brand-500/12 text-brand">
                           <Icon name={link.icon} className="size-4" />
                         </span>
-                        <span className="text-sm font-medium text-ink">{link.label}</span>
+                        <span className="text-sm font-medium leading-none text-ink">{link.label}</span>
                       </Link>
                     ))}
                   </div>

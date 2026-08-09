@@ -15,7 +15,7 @@ import { Icon } from "@/components/ui/icon";
 import { cn } from "@/lib/utils";
 
 const fieldStyles =
-  "w-full rounded-xl bg-canvas px-4 py-3 text-sm text-ink ring-1 ring-line transition-colors placeholder:text-ink-3 focus:ring-2 focus:ring-brand-500 focus:outline-none";
+  "box-border w-full max-w-full min-w-0 rounded-xl bg-canvas px-4 py-3 text-sm text-ink ring-1 ring-line transition-colors placeholder:text-ink-3 focus:ring-2 focus:ring-brand-500 focus:outline-none";
 
 const projectTypeLabelKeys = {
   web: "projectTypeWeb",
@@ -69,11 +69,11 @@ export function ContactForm({
   }
 
   return (
-    <form action={formAction} className="flex flex-col gap-5" noValidate>
+    <form action={formAction} className="relative flex min-w-0 flex-col gap-5" noValidate>
       {state.status === "error" && (
         <div
           role="alert"
-          className="flex items-start gap-3 rounded-xl bg-red-500/8 p-4 ring-1 ring-red-500/25"
+          className="flex min-w-0 items-start gap-3 rounded-xl bg-red-500/8 p-4 ring-1 ring-red-500/25"
         >
           <Icon name="x" className="mt-0.5 size-4 shrink-0 text-red-400" />
           <div className="flex flex-col gap-0.5">
@@ -89,7 +89,7 @@ export function ContactForm({
         </div>
       )}
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid min-w-0 gap-5 md:grid-cols-2">
         <Field
           id={`${formId}-name`}
           label={t("nameLabel")}
@@ -136,7 +136,7 @@ export function ContactForm({
         />
       </Field>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid min-w-0 gap-5 md:grid-cols-2">
         <Field id={`${formId}-type`} label={t("projectTypeLabel")}>
           <select
             id={`${formId}-type`}
@@ -184,9 +184,9 @@ export function ContactForm({
         />
       </Field>
 
-      <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute h-px w-px overflow-hidden opacity-0">
         <label htmlFor={`${formId}-website`}>Website</label>
-        <input id={`${formId}-website`} name="website" type="text" tabIndex={-1} />
+        <input id={`${formId}-website`} name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -221,7 +221,7 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex min-w-0 flex-col gap-2">
       <label htmlFor={id} className="text-sm font-medium text-ink-2">
         {label}
       </label>

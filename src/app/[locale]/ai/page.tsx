@@ -56,7 +56,7 @@ export default async function AiLandingPage({
       <ServiceHero
         service={service}
         locale={locale}
-        primaryCta={{ label: ta("auditCta"), href: profile.calendarUrl, external: true }}
+        primaryCta={{ label: ta("auditCta"), href: profile.calendarUrlLong, external: true }}
         secondaryCta={{ label: tc("getInTouch"), href: "#contact" }}
       />
 

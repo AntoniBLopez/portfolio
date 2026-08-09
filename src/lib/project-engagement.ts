@@ -6,9 +6,8 @@ export function engagementLabel(
   t: (key: string, values?: Record<string, string>) => string,
 ): string {
   if (engagement.kind === "client") {
-    return engagement.price
-      ? t("engagementClientPrice", { price: engagement.price })
-      : t("engagementClient");
+    // Price alone is clearer on cards; skip the "Client ·" prefix.
+    return engagement.price ?? t("engagementClient");
   }
   if (engagement.kind === "altruistic") return t("engagementAltruistic");
   if (engagement.kind === "interview") return t("engagementInterview");

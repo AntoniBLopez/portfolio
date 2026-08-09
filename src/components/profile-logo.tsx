@@ -18,9 +18,9 @@ export function ProfileLogo({ className, priority = false }: ProfileLogoProps) {
       <Image
         src={images.logo}
         alt=""
-        width={1640}
-        height={1657}
-        className="absolute left-1/2 top-0 h-auto w-[230%] max-w-none -translate-x-[calc(50%+2px)] object-cover object-top"
+        width={2400}
+        height={2172}
+        className="absolute left-1/2 top-0 h-auto w-[255%] max-w-none -translate-x-[calc(50%-2px)] object-cover object-top"
         sizes="256px"
         quality={100}
         priority={priority}

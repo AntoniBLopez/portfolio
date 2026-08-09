@@ -113,7 +113,7 @@ export default async function ProjectPage({
                   <Badge variant="brand">{tx(category.label, locale)}</Badge>
                 )}
                 <Badge variant="outline">{project.year}</Badge>
-                <Badge variant="outline">{engagementLabel(project.engagement, t)}</Badge>
+                <Badge variant="brand">{engagementLabel(project.engagement, t)}</Badge>
               </div>
 
               <h1 className="text-4xl font-semibold tracking-tight text-ink sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
