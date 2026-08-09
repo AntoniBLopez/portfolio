@@ -68,9 +68,10 @@ export async function ServiceHero({
                 alt={ta("photoAlt", { name: profile.name })}
                 fill
                 className="object-cover object-[center_18%]"
-                sizes="(max-width: 1024px) 90vw, 560px"
+                sizes="(max-width: 1024px) 100vw, 1200px"
                 quality={100}
                 priority
+                unoptimized
               />
             </div>
             <Reveal delay={0.12}>

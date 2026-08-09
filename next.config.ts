@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [],
     // Allow sharper hero/portrait qualities (default allowlist is only [75]).
     qualities: [75, 95, 100],
+    // Extra widths so portrait heroes can request retina-sharp sources.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1600, 1920, 2048, 2400, 3840],
   },
   async redirects() {
     return [
