@@ -1,10 +1,12 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Card } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icon";
 import { AnimatedGroup, Reveal } from "@/components/ui/reveal";
-import { about, skillGroups, txList, tx } from "@/content/site";
+import { images } from "@/config/images";
+import { about, profile, skillGroups, txList, tx } from "@/content/site";
 
 export async function About({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "About" });
@@ -15,9 +17,22 @@ export async function About({ locale }: { locale: string }) {
       <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
         <div className="flex flex-col gap-8">
           <SectionHeading eyebrow={t("eyebrow")} title={t("title")} />
+          <Reveal delay={0.04} className="w-full">
+            <div className="relative mx-auto aspect-4/5 w-full max-w-[18rem]">
+              <Image
+                src={images.about}
+                alt={profile.name}
+                fill
+                className="object-cover object-[center_18%]"
+                sizes="(max-width: 1024px) 100vw, 1200px"
+                quality={100}
+                unoptimized
+              />
+            </div>
+          </Reveal>
           <div className="flex flex-col gap-5">
             {paragraphs.map((paragraph, index) => (
-              <Reveal key={index} delay={index * 0.05}>
+              <Reveal key={index} delay={0.08 + index * 0.05}>
                 <p className="text-base leading-relaxed text-ink-2">{paragraph}</p>
               </Reveal>
             ))}

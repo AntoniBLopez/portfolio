@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { AudienceBeacon } from "@/components/audience-beacon";
-import { AudienceProjects } from "@/components/sections/audience-projects";
 import { Services } from "@/components/sections/services";
 import { Contact } from "@/components/sections/contact";
 import { WebLandingHero } from "@/components/service/web-landing-hero";
@@ -48,7 +47,6 @@ export default async function WebLandingPage({
     <>
       <AudienceBeacon audience="web" />
       <WebLandingHero locale={locale} />
-      <AudienceProjects locale={locale} audience="web" />
       <WebDevelopmentContent locale={locale} />
       <Services
         locale={locale}

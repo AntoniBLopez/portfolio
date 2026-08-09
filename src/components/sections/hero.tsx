@@ -1,22 +1,24 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { GradientMesh } from "@/components/gradient-mesh";
-import { HeroAutomationVisual } from "@/components/hero-automation-visual";
 import { Reveal } from "@/components/ui/reveal";
+import { images } from "@/config/images";
 import { heroStats, profile, tx } from "@/content/site";
 
 export async function Hero({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "Hero" });
   const tc = await getTranslations({ locale, namespace: "Common" });
+  const tb = await getTranslations({ locale, namespace: "Brand" });
 
   return (
     <section className="relative isolate overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-24">
       <GradientMesh />
 
       <Container size="wide" className="relative">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_minmax(0,22rem)] lg:gap-16">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_minmax(0,24rem)] lg:gap-16 xl:grid-cols-[1.15fr_minmax(0,28rem)]">
           <div className="flex flex-col items-start gap-8">
             <Reveal>
               <span className="inline-flex items-center gap-2.5 rounded-full bg-panel/80 px-3.5 py-1.5 text-xs font-medium text-ink-2 ring-1 ring-line backdrop-blur">
@@ -29,15 +31,6 @@ export async function Hero({ locale }: { locale: string }) {
             </Reveal>
 
             <Reveal delay={0.05} className="max-w-4xl">
-              <p className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-semibold tracking-tight text-brand sm:text-base">
-                {tx(profile.role, locale)}
-                <span aria-hidden className="text-ink-3">
-                  /
-                </span>
-                <span className="text-ink-2">
-                  {profile.yearsExperience}+ {locale === "es" ? "años" : "years"}
-                </span>
-              </p>
               <h1 className="text-gradient text-4xl font-semibold sm:text-5xl lg:text-[4.25rem] lg:leading-[1.05]">
                 {tx(profile.headline, locale)}
               </h1>
@@ -92,9 +85,48 @@ export async function Hero({ locale }: { locale: string }) {
             </Reveal>
           </div>
 
-          <Reveal delay={0.12} className="mx-auto w-full max-w-[20rem] lg:max-w-none">
-            <HeroAutomationVisual />
-          </Reveal>
+          <div className="mx-auto w-full max-w-[22rem] lg:max-w-none">
+            <div className="relative aspect-4/5 w-full [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)] lg:hidden">
+              <Image
+                src={images.headshotHomeMobile}
+                alt={profile.name}
+                fill
+                className="object-cover object-[center_18%]"
+                sizes="100vw"
+                quality={100}
+                priority
+                unoptimized
+              />
+            </div>
+            <div className="relative hidden aspect-4/5 w-full [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)] lg:block">
+              <Image
+                src={images.headshotHome}
+                alt={profile.name}
+                fill
+                className="object-cover object-[center_18%]"
+                sizes="1200px"
+                quality={100}
+                priority
+                unoptimized
+              />
+            </div>
+            <Reveal delay={0.12}>
+              <div className="mt-4 flex flex-col items-center gap-0.5 text-center">
+                <p className="text-base font-semibold tracking-tight text-ink sm:text-lg">
+                  {profile.name}
+                </p>
+                <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-sm font-medium text-brand">
+                  {tb("roleRecruiter")}
+                  <span aria-hidden className="text-ink-3">
+                    /
+                  </span>
+                  <span className="text-ink-2">
+                    {profile.yearsExperience}+ {tb("yearsLabel")}
+                  </span>
+                </p>
+              </div>
+            </Reveal>
+          </div>
         </div>
 
         <dl className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:mt-20 sm:grid-cols-3">
