@@ -24,7 +24,9 @@
     "closeMenu": "Close menu",
     "filterAll": "All work",
     "downloadResume": "Download CV",
-    "emailMe": "Email me"
+    "emailMe": "Email me",
+    "whatsappMe": "Message me",
+    "ctaWhatsApp": "Hi Antoni! I saw your work and would like more information. When would be a good time to talk?"
   },
   "Nav": {
     "about": "About",

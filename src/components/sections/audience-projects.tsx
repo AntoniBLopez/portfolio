@@ -6,6 +6,7 @@ import { Icon } from "@/components/ui/icon";
 import { ProjectGrid } from "@/components/project-grid";
 import { getProject } from "@/content/site";
 import type { Audience } from "@/lib/audience";
+import { cn } from "@/lib/utils";
 
 const WEB_SHOWCASE = ["blau-yoga", "dance-academy-platform"] as const;
 const AI_SHOWCASE = ["dance-academy-platform", "blau-yoga"] as const;
@@ -13,9 +14,11 @@ const AI_SHOWCASE = ["dance-academy-platform", "blau-yoga"] as const;
 export async function AudienceProjects({
   locale,
   audience,
+  className,
 }: {
   locale: string;
   audience: Extract<Audience, "web" | "ai">;
+  className?: string;
 }) {
   const t = await getTranslations({ locale, namespace: "AudienceProjects" });
   const slugs = audience === "web" ? WEB_SHOWCASE : AI_SHOWCASE;
@@ -24,7 +27,11 @@ export async function AudienceProjects({
     .filter((project): project is NonNullable<typeof project> => Boolean(project));
 
   return (
-    <Section id="examples" containerSize="wide" className="border-t border-line">
+    <Section
+      id="examples"
+      containerSize="wide"
+      className={cn("border-t border-line", className)}
+    >
       <SectionHeading
         eyebrow={t("eyebrow")}
         title={t(`${audience}Title`)}

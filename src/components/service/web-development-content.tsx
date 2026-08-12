@@ -17,7 +17,13 @@ export async function WebDevelopmentContent({ locale }: { locale: string }) {
 
   return (
     <>
-      <ServiceProcess service={service} locale={locale} title={t("processTitle")} />
+      {/* Alternate canvas / canvas-2 after the hero. */}
+      <ServiceProcess
+        service={service}
+        locale={locale}
+        title={t("processTitle")}
+        className="bg-canvas-2"
+      />
 
       <AudienceProjects locale={locale} audience="web" />
 
@@ -34,7 +40,12 @@ export async function WebDevelopmentContent({ locale }: { locale: string }) {
         }}
       />
 
-      <ServiceFaq service={service} locale={locale} title={t("faqTitle")} />
+      <ServiceFaq
+        service={service}
+        locale={locale}
+        title={t("faqTitle")}
+        className="bg-canvas"
+      />
     </>
   );
 }

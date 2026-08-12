@@ -89,6 +89,12 @@ export default async function ProjectPage({
     { label: outcomeLabel, body: tx(view.outcome, locale), icon: "trending-up" as const },
   ];
 
+  const showBenefits = Boolean(view.showBenefits && view.benefits);
+  // After hero (canvas): mute → plain → mute → … Adjust when benefits insert a band.
+  const storySurface = showBenefits ? "bg-canvas-2" : undefined;
+  const featuresSurface = showBenefits ? undefined : "bg-canvas-2";
+  const nextSurface = showBenefits ? "bg-canvas-2" : undefined;
+
   return (
     <>
       <section className="relative isolate overflow-hidden pt-28 pb-14 sm:pt-36">
@@ -209,7 +215,7 @@ export default async function ProjectPage({
         </Container>
       </section>
 
-      <Section containerSize="wide" className="border-t border-line py-16">
+      <Section containerSize="wide" className="border-t border-line bg-canvas-2 py-16">
         <AnimatedGroup className="grid gap-6 sm:grid-cols-3" itemClassName="h-full" stagger={0.08}>
           {view.metrics.map((metric) => (
             <Card key={metric.label.en} className="h-full p-7">
@@ -220,8 +226,8 @@ export default async function ProjectPage({
         </AnimatedGroup>
       </Section>
 
-      {view.showBenefits && view.benefits && (
-        <Section containerSize="wide" className="border-t border-line bg-canvas-2">
+      {showBenefits && view.benefits && (
+        <Section containerSize="wide" className="border-t border-line">
           <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
             {t("benefitsLabel")}
           </h2>
@@ -239,10 +245,7 @@ export default async function ProjectPage({
         </Section>
       )}
 
-      <Section
-        containerSize="wide"
-        className={cn("border-t border-line", !view.showBenefits && "bg-canvas-2")}
-      >
+      <Section containerSize="wide" className={cn("border-t border-line", storySurface)}>
         <div className="flex flex-col gap-14">
           {sections.map((section) => (
             <Reveal key={section.label}>
@@ -262,7 +265,7 @@ export default async function ProjectPage({
         </div>
       </Section>
 
-      <Section containerSize="wide" className="border-t border-line">
+      <Section containerSize="wide" className={cn("border-t border-line", featuresSurface)}>
         <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
           {featuresLabel}
         </h2>
@@ -299,7 +302,10 @@ export default async function ProjectPage({
       </Section>
 
       {nextProject.slug !== project.slug && (
-        <Section containerSize="wide" className="border-t border-line pb-0">
+        <Section
+          containerSize="wide"
+          className={cn("border-t border-line pb-0", nextSurface)}
+        >
           <Link
             href={projectHref(nextProject.slug, audience)}
             className="group flex flex-col gap-5 rounded-2xl bg-panel p-6 ring-1 ring-line transition-all hover:-translate-y-1 hover:ring-line-hi sm:flex-row sm:items-center sm:gap-8 sm:p-8"

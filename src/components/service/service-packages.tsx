@@ -12,6 +12,7 @@ export async function ServicePackages({
   title,
   cta,
   approximatePricing = false,
+  className,
 }: {
   service: Service;
   locale: string;
@@ -24,11 +25,16 @@ export async function ServicePackages({
   };
   /** Show “from / approx” framing so prices don’t read as fixed quotes. */
   approximatePricing?: boolean;
+  className?: string;
 }) {
   const t = await getTranslations({ locale, namespace: "Services" });
 
   return (
-    <Section id="packages" containerSize="wide" className="border-t border-line bg-canvas-2">
+    <Section
+      id="packages"
+      containerSize="wide"
+      className={cn("border-t border-line bg-canvas-2", className)}
+    >
       <SectionHeading eyebrow={t("packagesLabel")} title={title} />
 
       <AnimatedGroup

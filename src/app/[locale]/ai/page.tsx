@@ -64,13 +64,19 @@ export default async function AiLandingPage({
 
       <AudienceProjects locale={locale} audience="ai" />
 
-      <ServiceProcess service={service} locale={locale} title={t("processTitle")} />
+      <ServiceProcess
+        service={service}
+        locale={locale}
+        title={t("processTitle")}
+        className="bg-canvas-2"
+      />
 
       <ServicePackages
         service={service}
         locale={locale}
         title={t("packagesTitle")}
         cta={{ label: tc("bookCall"), href: profile.calendarUrl, external: true }}
+        className="bg-canvas"
       />
 
       <ServiceFaq service={service} locale={locale} title={t("faqTitle")} />

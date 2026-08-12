@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { whatsappUrlWithText } from "@/config/contact";
 import { profile } from "@/content/site";
 
 export async function ProjectsCta({ locale }: { locale: string }) {
@@ -37,11 +38,13 @@ export async function ProjectsCta({ locale }: { locale: string }) {
               <Icon name="arrow-up-right" className="size-4" />
             </a>
             <a
-              href={`mailto:${profile.email}`}
+              href={whatsappUrlWithText(tc("ctaWhatsApp"))}
+              target="_blank"
+              rel="noopener noreferrer"
               className={buttonStyles({ variant: "secondary", size: "lg" })}
             >
-              {tc("emailMe")}
-              <Icon name="mail" className="size-4" />
+              {tc("whatsappMe")}
+              <Icon name="whatsapp" className="size-4" />
             </a>
           </div>
         </Card>

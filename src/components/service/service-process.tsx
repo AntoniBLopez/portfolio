@@ -4,21 +4,24 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Icon } from "@/components/ui/icon";
 import { AnimatedGroup } from "@/components/ui/reveal";
 import { tx, type Service } from "@/content/site";
+import { cn } from "@/lib/utils";
 
 export async function ServiceProcess({
   service,
   locale,
   title,
+  className,
 }: {
   service: Service;
   locale: string;
   title: string;
+  className?: string;
 }) {
   const t = await getTranslations({ locale, namespace: "Services" });
   const paymentSteps = service.paymentSteps;
 
   return (
-    <Section id="process" containerSize="wide" className="border-t border-line">
+    <Section id="process" containerSize="wide" className={cn("border-t border-line", className)}>
       <SectionHeading eyebrow={t("processLabel")} title={title} />
 
       <AnimatedGroup

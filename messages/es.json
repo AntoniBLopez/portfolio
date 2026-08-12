@@ -24,7 +24,9 @@
     "closeMenu": "Cerrar menú",
     "filterAll": "Todo",
     "downloadResume": "Descargar CV",
-    "emailMe": "Escríbeme"
+    "emailMe": "Escríbeme",
+    "whatsappMe": "Escríbeme",
+    "ctaWhatsApp": "Hola Antoni! He visto tu trabajo y me gustaría pedir más información. ¿Cuándo te va bien hablarlo?"
   },
   "Nav": {
     "about": "Sobre mí",

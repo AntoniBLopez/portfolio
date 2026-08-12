@@ -11,13 +11,7 @@ import { DEFAULT_AUDIENCE, projectHref, type Audience } from "@/lib/audience";
 import { resolveProjectView } from "@/lib/project-view";
 import { cn } from "@/lib/utils";
 
-function ProjectVisual({
-  project,
-  engagement,
-}: {
-  project: Project;
-  engagement: string;
-}) {
+function ProjectVisual({ project }: { project: Project }) {
   return (
     <div className="relative aspect-16/10 overflow-hidden border-b border-line bg-canvas-2">
       {project.image ? (
@@ -39,9 +33,6 @@ function ProjectVisual({
           </div>
         </>
       )}
-      <span className="absolute top-3 left-3 rounded-full bg-brand-600 px-2.5 py-1 text-xs font-semibold text-white shadow-md shadow-brand-950/40">
-        {engagement}
-      </span>
       <span className="absolute top-3 right-3 rounded-full bg-canvas/85 px-2.5 py-1 font-mono text-xs font-medium text-ink ring-1 ring-line backdrop-blur">
         {project.year}
       </span>
@@ -61,21 +52,24 @@ export function ProjectCard({
   const tp = useTranslations("Projects");
   const category = projectCategories.find((item) => item.id === project.category);
   const view = resolveProjectView(project, audience);
+  const engagement = engagementLabel(project.engagement, tp);
 
   return (
     <Link
       href={projectHref(project.slug, audience)}
       className="group flex h-full flex-col overflow-hidden rounded-2xl bg-panel ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:ring-line-hi hover:shadow-2xl hover:shadow-brand-950/25"
     >
-      <ProjectVisual
-        project={project}
-        engagement={engagementLabel(project.engagement, tp)}
-      />
+      <ProjectVisual project={project} />
 
       <div className="flex flex-1 flex-col gap-4 p-6">
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between gap-3">
-            <h3 className="text-lg font-semibold tracking-tight text-ink">{project.name}</h3>
+            <div className="flex min-w-0 flex-wrap items-center gap-2">
+              <h3 className="text-lg font-semibold tracking-tight text-ink">{project.name}</h3>
+              <span className="shrink-0 rounded-full bg-brand-600 px-2.5 py-1 text-xs font-semibold text-white">
+                {engagement}
+              </span>
+            </div>
             {category && audience === "recruiter" && (
               <Badge variant="brand">{tx(category.label, locale)}</Badge>
             )}

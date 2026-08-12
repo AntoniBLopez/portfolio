@@ -4,15 +4,18 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Icon } from "@/components/ui/icon";
 import { JsonLd } from "@/components/json-ld";
 import { tx, type Service } from "@/content/site";
+import { cn } from "@/lib/utils";
 
 export async function ServiceFaq({
   service,
   locale,
   title,
+  className,
 }: {
   service: Service;
   locale: string;
   title: string;
+  className?: string;
 }) {
   const t = await getTranslations({ locale, namespace: "Services" });
 
@@ -30,7 +33,7 @@ export async function ServiceFaq({
     <Section
       id="faq"
       containerSize="default"
-      className="border-t border-line bg-canvas-2"
+      className={cn("border-t border-line bg-canvas-2", className)}
     >
       <SectionHeading eyebrow={t("faqLabel")} title={title} />
 
