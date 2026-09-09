@@ -9,17 +9,25 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Icon } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { sections } from "@/config/sections";
 import { profile } from "@/content/site";
 import { cn } from "@/lib/utils";
 
-const sectionIds = ["about", "experience", "work", "services", "contact"] as const;
-
-const navItems = [
-  { id: "about", labelKey: "about" },
-  { id: "experience", labelKey: "experience" },
-  { id: "work", labelKey: "projects" },
-  { id: "contact", labelKey: "contact" },
+const sectionIds = [
+  "about",
+  ...(sections.experience ? (["experience"] as const) : []),
+  "work",
+  "services",
+  "contact",
 ] as const;
+
+const primaryNavItems = [
+  { id: "about", labelKey: "about" },
+  ...(sections.experience ? [{ id: "experience" as const, labelKey: "experience" as const }] : []),
+  { id: "work", labelKey: "projects" },
+] as const;
+
+const navItems = [...primaryNavItems, { id: "contact", labelKey: "contact" }] as const;
 
 export function SiteHeader() {
   const t = useTranslations("Nav");
@@ -140,7 +148,7 @@ export function SiteHeader() {
             />
 
             <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
-              {navItems.slice(0, 3).map((item) => (
+              {primaryNavItems.map((item) => (
                 <span key={item.id}>{renderSectionLink(item.id, t(item.labelKey))}</span>
               ))}
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
+import { ExternalLinkButton } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { projectCategories, tx, txList, type Project } from "@/content/site";
 import { engagementLabel } from "@/lib/project-engagement";
@@ -53,15 +54,21 @@ export function ProjectCard({
   const category = projectCategories.find((item) => item.id === project.category);
   const view = resolveProjectView(project, audience);
   const engagement = engagementLabel(project.engagement, tp);
+  const caseStudyLabel = audience === "recruiter" ? t("viewCaseStudy") : tp("viewProject");
 
   return (
-    <Link
-      href={projectHref(project.slug, audience)}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl bg-panel ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:ring-line-hi hover:shadow-2xl hover:shadow-brand-950/25"
+    <article
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-panel ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:ring-line-hi hover:shadow-2xl hover:shadow-brand-950/25"
     >
+      <Link
+        href={projectHref(project.slug, audience)}
+        className="absolute inset-0 z-0 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+        aria-label={`${project.name} — ${caseStudyLabel}`}
+      />
+
       <ProjectVisual project={project} />
 
-      <div className="flex flex-1 flex-col gap-4 p-6">
+      <div className="relative flex flex-1 flex-col gap-4 p-6">
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between gap-3">
             <div className="flex min-w-0 flex-wrap items-center gap-2">
@@ -101,14 +108,28 @@ export function ProjectCard({
           </ul>
         ) : null}
 
-        <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-medium text-brand">
-          {audience === "recruiter" ? t("viewCaseStudy") : tp("viewProject")}
-          <Icon
-            name="arrow-right"
-            className="size-4 transition-transform group-hover:translate-x-1"
-          />
-        </span>
+        <div className="relative z-10 mt-auto flex flex-wrap items-center justify-between gap-3 pt-2">
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-brand">
+            {caseStudyLabel}
+            <Icon
+              name="arrow-right"
+              className="size-4 transition-transform group-hover:translate-x-1"
+            />
+          </span>
+
+          {project.liveUrl && (
+            <ExternalLinkButton
+              href={project.liveUrl}
+              variant="secondary"
+              size="sm"
+              onClick={(event) => event.stopPropagation()}
+            >
+              {t("liveSite")}
+              <Icon name="arrow-up-right" className="size-4" />
+            </ExternalLinkButton>
+          )}
+        </div>
       </div>
-    </Link>
+    </article>
   );
 }

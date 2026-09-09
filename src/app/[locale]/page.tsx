@@ -7,6 +7,7 @@ import { Experience } from "@/components/sections/experience";
 import { Projects } from "@/components/sections/projects";
 import { Services } from "@/components/sections/services";
 import { Contact } from "@/components/sections/contact";
+import { sections } from "@/config/sections";
 import { alternatesFor } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -41,7 +42,7 @@ export default async function HomePage({
       <AudienceBeacon audience="recruiter" />
       <Hero locale={locale} />
       <About locale={locale} />
-      <Experience locale={locale} />
+      {sections.experience && <Experience locale={locale} />}
       <Projects locale={locale} audience="recruiter" />
       <Services locale={locale} />
       <Contact locale={locale} />

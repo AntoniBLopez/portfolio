@@ -4,6 +4,7 @@ import { BrandMark } from "@/components/brand-mark";
 import { FooterTagline } from "@/components/footer-tagline";
 import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
+import { sections } from "@/config/sections";
 import { profile } from "@/content/site";
 
 export async function SiteFooter({ locale }: { locale: string }) {
@@ -12,7 +13,7 @@ export async function SiteFooter({ locale }: { locale: string }) {
 
   const exploreLinks = [
     { href: "/#about", label: tn("about") },
-    { href: "/#experience", label: tn("experience") },
+    ...(sections.experience ? [{ href: "/#experience", label: tn("experience") }] : []),
     { href: "/projects", label: tn("projects") },
     { href: "/#contact", label: tn("contact") },
   ];
