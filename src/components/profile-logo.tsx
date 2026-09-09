@@ -24,6 +24,7 @@ export function ProfileLogo({ className, priority = false }: ProfileLogoProps) {
         sizes="256px"
         quality={100}
         priority={priority}
+        unoptimized
       />
     </span>
   );

@@ -165,6 +165,8 @@ export default async function ProjectPage({
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 1024px) 100vw, 40vw"
+                    quality={100}
+                    unoptimized
                     priority
                   />
                 </div>
@@ -327,6 +329,8 @@ export default async function ProjectPage({
                   fill
                   className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                   sizes="(max-width: 640px) 100vw, 192px"
+                  quality={100}
+                  unoptimized
                 />
               ) : (
                 <>

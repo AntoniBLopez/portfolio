@@ -86,15 +86,28 @@ export async function WebLandingHero({ locale }: { locale: string }) {
           </div>
 
           <div className="mx-auto w-full max-w-[22rem] lg:max-w-none">
-            <div className="relative aspect-4/5 w-full">
+            <div className="relative aspect-4/5 w-full lg:hidden">
+              <Image
+                src={images.headshotHomeMobile}
+                alt={t("photoAlt", { name: profile.name })}
+                fill
+                className="object-cover object-[center_18%]"
+                sizes="100vw"
+                quality={100}
+                priority
+                unoptimized
+              />
+            </div>
+            <div className="relative hidden aspect-4/5 w-full lg:block">
               <Image
                 src={images.headshot}
                 alt={t("photoAlt", { name: profile.name })}
                 fill
                 className="object-cover object-[center_18%]"
-                sizes="(max-width: 1024px) 90vw, 560px"
+                sizes="1200px"
                 quality={100}
                 priority
+                unoptimized
               />
             </div>
             <Reveal delay={0.12}>

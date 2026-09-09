@@ -33,6 +33,8 @@ export async function Experience({ locale }: { locale: string }) {
               height={1750}
               className="relative aspect-3/4 h-auto w-full object-cover object-[center_12%]"
               sizes="(max-width: 1024px) 13rem, 17rem"
+              quality={100}
+              unoptimized
               priority={false}
             />
           </div>
